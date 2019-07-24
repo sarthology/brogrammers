@@ -1,0 +1,54 @@
+.head {
+  display: grid;
+  /* grid-template-columns: 1fr 2fr; */
+  width: 40%;
+  margin: 0 auto;
+  font-family: sans-serif;
+  text-align: center;
+}
+body {
+  font-family: sans-serif;
+}
+.head img {
+  width: 100px;
+  margin: 0 auto;
+}
+
+.head h1 {
+  display: grid;
+  align-content: center;
+}
+
+.content-center {
+  width: 70%;
+  margin: 0 auto;
+}
+
+.start {
+  margin-top: 50px;
+}
+.button-start {
+  width: 40%;
+  margin: 15px auto;
+  text-align: center;
+  padding: 10px;
+  color: white;
+  background: #2c67ee;
+  font-weight: 100;
+  cursor: pointer;
+}
+.exercise h2 {
+  text-align: center;
+  font-weight: 100;
+}
+.exercise img {
+  max-height: 300px;
+  margin: 0 auto;
+}
+.exercise {
+  display: grid;
+}
+
+audio {
+  display: none;
+}
