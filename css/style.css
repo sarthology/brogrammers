@@ -1,3 +1,9 @@
+@font-face {
+  font-family: "komikax";
+  src: url("../assets/KOMIKAX_-webfont.woff") format("woff");
+  font-weight: normal;
+  font-style: normal;
+}
 .head {
   display: grid;
   /* grid-template-columns: 1fr 2fr; */
@@ -14,6 +20,14 @@ body {
   margin: 0 auto;
 }
 
+.nav h1 {
+  color: #173947;
+  font-family: komikax;
+  font-weight: bolder;
+  letter-spacing: 2px;
+  font-size: 40px;
+  text-align: center;
+}
 .head h1 {
   display: grid;
   align-content: center;
@@ -51,4 +65,204 @@ body {
 
 audio {
   display: none;
+}
+.logo img {
+  width: 400px;
+}
+
+.logo,
+.action {
+  margin: 0 auto;
+  justify-content: center;
+  display: grid;
+}
+
+.custom,
+.create,
+.start-exercise {
+  text-align: center;
+  border: 2px solid #173947;
+  margin-left: 10px;
+  padding: 20px;
+  font-family: komikax;
+  font-weight: lighter;
+  color: #173947;
+  cursor: pointer;
+}
+.create {
+  background: #e56166;
+  border-color: #e56166;
+}
+.start-button {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  margin: 0 auto;
+  width: 40%;
+  margin-top: 40px;
+}
+.navbar {
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr;
+}
+.navbar > .icon {
+  width: 80px;
+}
+.navbar h1 {
+  margin: 10px;
+  font-family: komikax;
+  align-self: center;
+  color: #173947;
+  text-align: center;
+}
+.f-audio {
+  width: 30px;
+  align-self: center;
+  justify-self: end;
+  margin: 0 20px;
+  cursor: pointer;
+}
+.search-image {
+  display: grid;
+  justify-content: center;
+}
+.search-image img {
+  width: 400px;
+}
+.search-area {
+  margin-top: 100px;
+}
+.search-message,
+.timer,
+.exercise-message {
+  margin-top: 30px;
+  text-align: center;
+  color: #173947;
+  font-family: komikax;
+  font-weight: 100;
+}
+.exercise-area {
+  display: none;
+}
+.exercise-gif {
+  display: grid;
+  justify-content: center;
+  margin-top: 20px;
+}
+
+.exercise-message {
+  color: #e56166;
+}
+
+.exercise-info {
+  display: grid;
+  width: 40%;
+  margin: 20px auto;
+  text-align: center;
+  font-family: komikax;
+}
+.exercise-info h3 {
+  margin: 0;
+  color: #f0bc08;
+  letter-spacing: 1px;
+  font-weight: 100;
+}
+
+.exercise-info span {
+  color: #389cae;
+}
+@keyframes floating {
+  from {
+    transform: translate(0, -0px);
+  }
+  65% {
+    transform: translate(0, -25px);
+  }
+  to {
+    transform: translate(0, 0px);
+  }
+}
+@-webkit-keyframes tada {
+  from {
+    -webkit-transform: scale3d(1, 1, 1);
+    transform: scale3d(1, 1, 1);
+  }
+
+  10%,
+  20% {
+    -webkit-transform: scale3d(0.9, 0.9, 0.9) rotate3d(0, 0, 1, -3deg);
+    transform: scale3d(0.9, 0.9, 0.9) rotate3d(0, 0, 1, -3deg);
+  }
+
+  30%,
+  50%,
+  70%,
+  90% {
+    -webkit-transform: scale3d(1.1, 1.1, 1.1) rotate3d(0, 0, 1, 3deg);
+    transform: scale3d(1.1, 1.1, 1.1) rotate3d(0, 0, 1, 3deg);
+  }
+
+  40%,
+  60%,
+  80% {
+    -webkit-transform: scale3d(1.1, 1.1, 1.1) rotate3d(0, 0, 1, -3deg);
+    transform: scale3d(1.1, 1.1, 1.1) rotate3d(0, 0, 1, -3deg);
+  }
+
+  to {
+    -webkit-transform: scale3d(1, 1, 1);
+    transform: scale3d(1, 1, 1);
+  }
+}
+
+@keyframes tada {
+  from {
+    -webkit-transform: scale3d(1, 1, 1);
+    transform: scale3d(1, 1, 1);
+  }
+
+  10%,
+  20% {
+    -webkit-transform: scale3d(0.9, 0.9, 0.9) rotate3d(0, 0, 1, -3deg);
+    transform: scale3d(0.9, 0.9, 0.9) rotate3d(0, 0, 1, -3deg);
+  }
+
+  30%,
+  50%,
+  70%,
+  90% {
+    -webkit-transform: scale3d(1.1, 1.1, 1.1) rotate3d(0, 0, 1, 3deg);
+    transform: scale3d(1.1, 1.1, 1.1) rotate3d(0, 0, 1, 3deg);
+  }
+
+  40%,
+  60%,
+  80% {
+    -webkit-transform: scale3d(1.1, 1.1, 1.1) rotate3d(0, 0, 1, -3deg);
+    transform: scale3d(1.1, 1.1, 1.1) rotate3d(0, 0, 1, -3deg);
+  }
+
+  to {
+    -webkit-transform: scale3d(1, 1, 1);
+    transform: scale3d(1, 1, 1);
+  }
+}
+
+.tada {
+  animation-name: tada;
+  animation-duration: 1.5s;
+  animation-iteration-count: infinite;
+  animation-fill-mode: forwards;
+}
+
+.navbar > .icon:hover {
+  animation-name: tada;
+  animation-duration: 1.5s;
+  animation-iteration-count: infinite;
+  animation-fill-mode: forwards;
+}
+.floating {
+  animation-name: floating;
+  animation-duration: 2s;
+  animation-iteration-count: infinite;
+  animation-timing-function: ease-in-out;
 }
