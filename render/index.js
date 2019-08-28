@@ -1,4 +1,7 @@
-// components
+/**
+ * Components
+ */
+
 const Navbar = {
     view: () => {
         return m(
@@ -17,27 +20,6 @@ const Navbar = {
                 class: 'f-audio',
                 alt: 'audio.svg'
             })
-        );
-    }
-};
-
-const SearchArea = {
-    view: () => {
-        return m(
-            '#search.search-area',
-            m(
-                '.search-image',
-
-                m('img', {
-                    src: 'img/search.svg',
-                    class: 'floating',
-                    alt: 'search.svg'
-                })
-            ),
-
-            m('.search-message', m('h2', 'Finding Best Exercises for you...')),
-
-            m('.timer', m('h1.timeClock', '00:00:00'))
         );
     }
 };
@@ -67,20 +49,31 @@ const ExercisesArea = {
     }
 };
 
-// views
+const SearchArea = {
+    view: () => {
+        return m(
+            '#search.search-area',
+            m(
+                '.search-image',
+
+                m('img', {
+                    src: 'img/search.svg',
+                    class: 'floating',
+                    alt: 'search.svg'
+                })
+            ),
+
+            m('.search-message', m('h2', 'Finding Best Exercises for you...')),
+
+            m('.timer', m('h1.timeClock', '00:00:00'))
+        );
+    }
+};
+
+/**
+ * Pages
+ */
 const Home = {
-    view: () => {
-        return m('', m(Navbar), m(SearchArea));
-    }
-};
-
-const Exercises = {
-    view: () => {
-        return m('', m(Navbar), m(ExercisesArea));
-    }
-};
-
-const Landing = {
     view: () => {
         return m(
             '',
@@ -94,29 +87,58 @@ const Landing = {
             m(
                 '.start-button',
 
-                m('.custom', 'Take Custom Challenge'),
+                m(
+                    '.custom',
 
-                m('.create', 'Create Own Challenge')
+                    {
+                        onclick: () => {
+                            location = '/#!loading';
+                        }
+                    },
+
+                    'Take Custom Challenge'
+                ),
+
+                m(
+                    '.create',
+
+                    {
+                        onclick: () => {
+                            location = '/#!loading';
+                        }
+                    },
+
+                    'Create Own Challenge'
+                )
             )
         );
     }
 };
 
-// main
-const App = {
-    position: 'landing',
-    view: vnode => {
-        switch (vnode.state.position) {
-            case 'landing':
-                return m('', m(Landing));
-                break;
-
-            default:
-                return m('', m(Landing));
-                break;
-        }
+const Loading = {
+    view: () => {
+        return m('', m(Navbar), m(SearchArea));
     }
 };
 
+const Exercises = {
+    view: () => {
+        return m('', m(Navbar), m(ExercisesArea));
+    }
+};
+
+/**
+ * Routes
+ */
+const routes = {
+    '/': Home,
+    '/loading': Loading,
+    '/exercises': Exercises
+};
+
+/**
+ * Main
+ */
+const homePath = '/';
 const root = document.body;
-m.mount(root, App);
+m.route(root, homePath, routes);
