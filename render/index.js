@@ -1,4 +1,6 @@
-// components
+/**
+ * Components
+ */
 const Navbar = {
   view: () => {
     return m(
@@ -67,7 +69,9 @@ const ExercisesArea = {
   }
 };
 
-// views
+/**
+ * Pages
+ */
 const Home = {
   view: () => {
     return m("", m(Navbar), m(SearchArea));
@@ -187,5 +191,16 @@ const App = {
   }
 };
 
+/**
+ * Routes
+ */
+const routes = {
+  "/": Landing,
+  "/custom": CustomSettings,
+  "/home": Home,
+  "/exercises": Exercises
+};
+
 const root = document.body;
-m.mount(root, App);
+const homePath = "/";
+m.route(root, homePath, routes);
