@@ -125,7 +125,7 @@ const CustomSettings = {
         m(
           ".f-section",
           m("label", "Frequency:"),
-          m("input", {
+          m("input.slider", {
             type: "range",
             min: "30",
             max: "240",
@@ -136,7 +136,7 @@ const CustomSettings = {
         m(
           ".f-section",
           m("label", "How long you gonna work:"),
-          m("input", {
+          m("input.slider", {
             type: "range",
             min: "1",
             max: "8",
@@ -149,21 +149,48 @@ const CustomSettings = {
           m("label", "Level of Exercise:"),
           m(
             ".level",
-            m("input", {
-              type: "checkbox",
-              id: "easy"
-            }),
-            m("span", "Easy"),
-            m("input", {
-              type: "checkbox",
-              id: "medium"
-            }),
-            m("span", "Medium"),
-            m("input", {
-              type: "checkbox",
-              id: "hard"
-            }),
-            m("span", "Hard")
+            m(
+              ".checkbox",
+              m("input", {
+                type: "checkbox",
+                id: "easy"
+              }),
+              m(
+                "label",
+                {
+                  for: "easy"
+                },
+                "Easy"
+              )
+            ),
+            m(
+              ".checkbox",
+              m("input", {
+                type: "checkbox",
+                id: "medium"
+              }),
+              m(
+                "label",
+                {
+                  for: "medium"
+                },
+                "Medium"
+              )
+            ),
+            m(
+              ".checkbox",
+              m("input", {
+                type: "checkbox",
+                id: "hard"
+              }),
+              m(
+                "label",
+                {
+                  for: "hard"
+                },
+                "Hard"
+              )
+            )
           )
         ),
         m(
