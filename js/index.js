@@ -42,6 +42,31 @@ const SearchArea = {
     }
 };
 
+const ExercisesArea = {
+    view: () => {
+        return m(
+            '#exercise.exercise-area',
+
+            m('.exercise-message', m('h3', 'Go kill it, you beast!')),
+
+            m(
+                '.exercise-gif',
+                m('img', { src: '../img/highknees.gif', alt: 'highknees.gif' })
+            ),
+
+            m(
+                '.exercise-info',
+
+                m('.reps', m('h3', m('span', 'Reps: '), '25')),
+
+                m('.time', m('h3', m('span', 'Duration: '), '3 minutes'))
+            ),
+
+            m('.action', m('.start-exercise', 'Start Exercise Now'))
+        );
+    }
+};
+
 // views
 const Home = {
     view: () => {
@@ -71,9 +96,9 @@ const Landing = {
     }
 };
 
-const ExerciseArea = {
+const Exercises = {
     view: () => {
-        return m('h1', 'Exercise Area');
+        return m('', m(Navbar), m(ExercisesArea));
     }
 };
 
@@ -83,7 +108,7 @@ const App = {
     view: vnode => {
         switch (vnode.state.position) {
             case 'landing':
-                return m('', m(Landing));
+                return m('', m(Exercises));
                 break;
 
             default:
