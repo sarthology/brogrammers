@@ -1,14 +1,129 @@
 <!DOCTYPE html>
 <html lang="en">
-    <head>
-        <meta charset="UTF-8" />
-        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-        <meta http-equiv="X-UA-Compatible" content="ie=edge" />
-        <title>💪🏼 Brogrammer</title>
-        <link rel="stylesheet" href="css/style.css" />
-    </head>
-    <body></body>
-    <script src="https://requirejs.org/docs/release/2.3.6/minified/require.js"></script>
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+    <title>💪🏼 Brogrammer</title>
+    <link rel="stylesheet" href="css/style.css" />
+  </head>
+  <body>
+    <!-- <div id="view"></div> -->
+    <div class="navbar">
+      <img src="assets/yoga.svg" alt="" class="icon" />
+      <h1>Brogrammer</h1>
+      <img src="img/audio.svg" class="f-audio" alt="" />
+    </div>
+
+    <div class="big-form">
+      <div class="f-section">
+        <label>Select Exercises:</label>
+        <div class="choices">
+          <div class="choice">
+            Jumping Jacks
+          </div>
+          <div class="choice">
+            Lunges
+          </div>
+          <div class="choice">
+            Planks
+          </div>
+          <div class="choice">
+            Push-ups
+          </div>
+          <div class="choice">
+            Squats
+          </div>
+          <div class="choice">
+            Burpees
+          </div>
+        </div>
+      </div>
+      <div class="f-section">
+        <label>Frequency:</label>
+        <input
+          type="range"
+          name="cowbell"
+          min="30"
+          max="240"
+          value="60"
+          step="30"
+        />
+      </div>
+      <div class="f-section">
+        <label>How long you gonna work:</label>
+        <input type="range" name="cowbell" min="1" max="8" value="1" step="1" />
+      </div>
+      <div class="f-section">
+        <label>Level of Exercise:</label>
+        <div class="level">
+          <input id="easy" type="checkbox" />
+          <span>Easy</span>
+          <input id="medium" type="checkbox" />
+          <span>Medium</span>
+          <input id="hard" type="checkbox" />
+          <span>Hard</span>
+        </div>
+      </div>
+      <div class="save-custom">
+        <div class="start-exercise custom-session">
+          Start Custom Session
+        </div>
+      </div>
+    </div>
+    <!-- <div class="search-area" id="search">
+      <div class="search-image">
+        <img src="img/search.svg" class="floating" alt="" />
+      </div>
+      <div class="search-message">
+        <h2>Finding Best Excercises for you...</h2>
+      </div>
+      <div class="timer">
+        <h1 id="timeClock">00:00:00</h1>
+      </div>
+    </div>
+
+    <div class="exercise-area" id="exercise">
+      <div class="exercise-message">
+        <h3>Go kill it, you beast</h3>
+      </div>
+      <div class="exercise-gif">
+        <img src="img/highknees.gif" alt="" />
+      </div>
+      <div class="exercise-info">
+        <div class="reps">
+          <h3><span>Reps:</span> 25</h3>
+        </div>
+        <div class="time">
+          <h3><span>Duration:</span> 3 mins</h3>
+        </div>
+      </div>
+      <div class="action">
+        <div class="start-exercise">
+          Start Exercise Now !!
+        </div>
+      </div>
+    </div> -->
+
+    <!-- <div class="content-center">
+      <div class="head">
+        <img src="img/1487587.svg" alt="" srcset="" />
+        <h1>Brogrammer</h1>
+      </div>
+      <div class="exercise">
+        <h2>Name of the exercise</h2>
+        <img src="" id="exercise-gif" alt="" />
+      </div>
+      <div class="start">
+        <div class="button-start" id="start">
+          Let's Do it
+        </div>
+      </div>
+    </div>
+    <audio id="alert" preload="auto">
+      <source src="assets/alert.mp3" />
+    </audio> -->
+    <script src="js/easytimer.min.js"></script>
     <script src="https://unpkg.com/mithril/mithril.js"></script>
     <script src="js/index.js"></script>
 </html>
