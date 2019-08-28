@@ -89,9 +89,11 @@ audio {
   color: #173947;
   cursor: pointer;
 }
-.create {
+.create,
+.custom-session {
   background: #e56166;
   border-color: #e56166;
+  color: white;
 }
 .start-button {
   display: grid;
@@ -169,6 +171,43 @@ audio {
 
 .exercise-info span {
   color: #389cae;
+}
+.big-form {
+  display: grid;
+  margin: 10px auto;
+  width: 80%;
+}
+.f-section {
+  display: grid;
+  margin: 10px 0;
+}
+.f-section label {
+  font-size: 22px;
+  margin: 20px 0;
+  font-family: komikax;
+  font-weight: lighter;
+  color: #173947;
+}
+.choices {
+  display: flex;
+  margin: 10px;
+}
+.level {
+  color: #389cae;
+  font-size: 18px;
+}
+.choice {
+  border: 2px solid #389cae;
+  margin: 10px;
+  padding: 15px;
+  color: #389cae;
+  cursor: pointer;
+  text-transform: uppercase;
+  transition: 1s background, 1s color;
+}
+.choice:hover {
+  background: #389cae;
+  color: white;
 }
 @keyframes floating {
   from {
@@ -265,4 +304,14 @@ audio {
   animation-duration: 2s;
   animation-iteration-count: infinite;
   animation-timing-function: ease-in-out;
+}
+
+.save-custom {
+  justify-content: left;
+  display: grid;
+}
+.custom-session {
+  padding: 15px;
+  margin-top: 30px;
+  margin-left: 0;
 }
