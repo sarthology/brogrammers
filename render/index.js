@@ -95,9 +95,29 @@ const Landing = {
       m(
         ".start-button",
 
-        m(".custom", "Take Custom Challenge"),
+        m(
+          ".custom",
 
-        m(".create", "Create Own Challenge")
+          {
+            onclick: () => {
+              location = "/#!custom";
+            }
+          },
+
+          "Take Custom Challenge"
+        ),
+
+        m(
+          ".create",
+
+          {
+            onclick: () => {
+              location = "/#!home";
+            }
+          },
+
+          "Create Own Challenge"
+        )
       )
     );
   }
