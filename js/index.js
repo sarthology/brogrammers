@@ -74,6 +74,12 @@ const Home = {
     }
 };
 
+const Exercises = {
+    view: () => {
+        return m('', m(Navbar), m(ExercisesArea));
+    }
+};
+
 const Landing = {
     view: () => {
         return m(
@@ -93,12 +99,6 @@ const Landing = {
                 m('.create', 'Create Own Challenge')
             )
         );
-    }
-};
-
-const Exercises = {
-    view: () => {
-        return m('', m(Navbar), m(ExercisesArea));
     }
 };
 
