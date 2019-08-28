@@ -202,22 +202,6 @@ const CustomSettings = {
   }
 };
 
-// main
-const App = {
-  position: "landing",
-  view: vnode => {
-    switch (vnode.state.position) {
-      case "landing":
-        return m("", m(CustomSettings));
-        break;
-
-      default:
-        return m("", m(CustomSettings));
-        break;
-    }
-  }
-};
-
 /**
  * Routes
  */
