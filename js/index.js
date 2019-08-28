@@ -5,7 +5,7 @@ const Navbar = {
             '.navbar',
 
             m('img', {
-                src: '../assets/yoga.svg',
+                src: 'assets/yoga.svg',
                 alt: 'yoga.svg',
                 class: 'icon'
             }),
@@ -13,7 +13,7 @@ const Navbar = {
             m('h1', 'Brogrammer'),
 
             m('img', {
-                src: '../img/audio.svg',
+                src: 'img/audio.svg',
                 class: 'f-audio',
                 alt: 'audio.svg'
             })
@@ -29,7 +29,7 @@ const SearchArea = {
                 '.search-image',
 
                 m('img', {
-                    src: '../img/search.svg',
+                    src: 'img/search.svg',
                     class: 'floating',
                     alt: 'search.svg'
                 })
@@ -51,7 +51,7 @@ const ExercisesArea = {
 
             m(
                 '.exercise-gif',
-                m('img', { src: '../img/highknees.gif', alt: 'highknees.gif' })
+                m('img', { src: 'img/highknees.gif', alt: 'highknees.gif' })
             ),
 
             m(
@@ -88,7 +88,7 @@ const Landing = {
 
             m(
                 '.logo',
-                m('img.tada', { src: '../assets/yoga.svg', alt: 'yoga.svg' })
+                m('img.tada', { src: 'assets/yoga.svg', alt: 'yoga.svg' })
             ),
 
             m(
@@ -108,7 +108,7 @@ const App = {
     view: vnode => {
         switch (vnode.state.position) {
             case 'landing':
-                return m('', m(Exercises));
+                return m('', m(Landing));
                 break;
 
             default:
@@ -118,4 +118,5 @@ const App = {
     }
 };
 
-m.mount(document.body, App);
+const root = document.body;
+m.mount(root, App);
