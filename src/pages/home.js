@@ -1,18 +1,23 @@
-import React from 'react';
-import parseMs from 'parse-ms';
+import React, { useState } from 'react';
+import Timer from 'easytimer.js';
 import useCountdown from 'react-use-countdown';
 import NavBar from '../components/navbar';
 import search from '../images/search.svg';
 import './index.css';
 
 const HomePage = () => {
-  const countdown = useCountdown(() => Date.now() + 10000);
-  const { seconds } = parseMs(countdown);
+  const timer = new Timer();
+  timer.start({ countdown: true, startValues: { seconds: 10 } });
 
-  if (countdown === 0) console.log('redirecting...');
-  if (typeof window !== 'undefined' && countdown === 0) {
+  const [time, setTime] = useState(timer.getTimeValues().toString());
+
+  timer.addEventListener('secondsUpdated', function(e) {
+    setTime(timer.getTimeValues().toString());
+  });
+
+  timer.addEventListener('targetAchieved', function(e) {
     window.location = '/exercise';
-  }
+  });
 
   return (
     <>
@@ -25,7 +30,7 @@ const HomePage = () => {
           <h2>Finding Best Excercises for you...</h2>
         </div>
         <div className="timer">
-          <h1 id="timeClock">{seconds} seconds</h1>
+          <h1 id="timeClock">{time}</h1>
         </div>
       </div>
     </>
