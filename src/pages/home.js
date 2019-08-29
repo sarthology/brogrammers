@@ -1,23 +1,26 @@
-import React, { useState } from 'react';
-import Timer from 'easytimer.js';
-import useCountdown from 'react-use-countdown';
+import React, { useState, useEffect } from 'react';
+import { Timer } from 'easytimer.js';
 import NavBar from '../components/navbar';
 import search from '../images/search.svg';
 import './index.css';
 
 const HomePage = () => {
-  const timer = new Timer();
-  timer.start({ countdown: true, startValues: { seconds: 10 } });
+  const [time, setTime] = useState(null);
 
-  const [time, setTime] = useState(timer.getTimeValues().toString());
+  useEffect(() => {
+    const timer = new Timer();
 
-  timer.addEventListener('secondsUpdated', function(e) {
-    setTime(timer.getTimeValues().toString());
-  });
+    timer.start({ countdown: true, startValues: { seconds: 10 } });
 
-  timer.addEventListener('targetAchieved', function(e) {
-    window.location = '/exercise';
-  });
+    timer.addEventListener('secondsUpdated', function(e) {
+      setTime(timer.getTimeValues().toString());
+    });
+
+    timer.addEventListener('targetAchieved', function(e) {
+      setTime(null);
+      window.location = '/exercise';
+    });
+  }, []);
 
   return (
     <>
