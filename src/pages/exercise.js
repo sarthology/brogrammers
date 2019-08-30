@@ -4,6 +4,8 @@ import NavBar from '../components/navbar';
 import Exercise from '../components/exercise';
 import './index.css';
 
+import alertAudioFile from '../assets/alert.wav';
+
 // exercises gif
 import burpeesGif from '../images/burpees.gif';
 import highKneesGif from '../images/highknees.gif';
@@ -29,6 +31,18 @@ const exercises = [
   { gif: stairSteppingGif, reps: 100 }
 ];
 
+const alarm = new Audio(alertAudioFile);
+let isActive = false;
+
+if (!document.hasFocus() && !isActive) {
+  alarm.play();
+}
+
+const stopAlarm = () => {
+  isActive = true;
+  alarm.pause();
+};
+
 const ExercisePage = () => {
   const [time, setTime] = useState(null);
   const [start, setStart] = useState(false);
@@ -37,6 +51,9 @@ const ExercisePage = () => {
 
   const handleStartExercise = e => {
     e.preventDefault();
+
+    alarm.pause();
+    isActive = true;
 
     if (start) {
       timer.pause();
@@ -48,9 +65,18 @@ const ExercisePage = () => {
   useEffect(() => {
     setTimer(new Timer());
 
-    setRandomExercise(
-      exercises[Math.floor(Math.random() * (exercises.length + 1))]
-    );
+    const random = () => {
+      const random = localStorage.getItem('random')
+        ? localStorage.getItem('random')
+        : localStorage.setItem(
+            'random',
+            Math.floor(Math.random() * exercises.length)
+          );
+
+      return random;
+    };
+
+    setRandomExercise(exercises[random()]);
 
     // setRandomExercise(exercises[0]);
   }, []);
@@ -68,6 +94,7 @@ const ExercisePage = () => {
 
       timer.addEventListener('targetAchieved', function(e) {
         setTime(null);
+        localStorage.removeItem('random');
         window.location = '/';
       });
     } else if (randomExercise && randomExercise.reps && start) {
@@ -79,6 +106,7 @@ const ExercisePage = () => {
 
       timer.addEventListener('targetAchieved', function(e) {
         setTime(null);
+        localStorage.removeItem('random');
         window.location = '/';
       });
     }
@@ -86,7 +114,7 @@ const ExercisePage = () => {
 
   return (
     <>
-      <NavBar />
+      <NavBar pauseMusic={stopAlarm} isTabActive={isActive} />
       <div className="exercise-area" id="exercise">
         <div className="exercise-message">
           <h3>Go kill it, you beast</h3>
