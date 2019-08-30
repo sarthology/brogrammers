@@ -60,6 +60,10 @@ const ExercisePage = () => {
     }
 
     setStart(!start);
+
+    if (randomExercise && randomExercise.reps && start) {
+      window.location = '/success';
+    }
   };
 
   useEffect(() => {
