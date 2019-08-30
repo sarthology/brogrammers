@@ -69,7 +69,13 @@ const ExercisePage = () => {
 
   useEffect(() => {
     const getLocalData = item => {
-      return JSON.parse(localStorage.getItem('customData'))[item];
+      const localData = localStorage.getItem('customData');
+      const data =
+        localData && JSON.parse(localData)[item]
+          ? JSON.parse(localData)[item]
+          : null;
+
+      return data;
     };
 
     const getRandom = arrayLength => {
@@ -84,27 +90,24 @@ const ExercisePage = () => {
     };
 
     const query = queryString.parse(document.location.search);
+    const selectedExercises = getLocalData('selectedExercises');
 
-    if (query && query.customData) {
-      const selectedExercises = getLocalData('selectedExercises');
-
-      if (selectedExercises.length) {
-        if (selectedExercises.length < randomNumber) {
-          localStorage.removeItem('random');
-        }
-
-        setRandomNumber(getRandom(selectedExercises.length));
-        setRandomExercise(ExercisesData[selectedExercises[randomNumber]]);
-      } else {
-        setRandomNumber(getRandom(ExercisesList.length));
-        setRandomExercise(ExercisesData[ExercisesList[randomNumber]]);
+    if (query && query.customData && selectedExercises.length) {
+      if (selectedExercises.length < randomNumber) {
+        localStorage.removeItem('random');
       }
+
+      setRandomNumber(getRandom(selectedExercises.length));
+      setRandomExercise(ExercisesData[selectedExercises[randomNumber]]);
+      setDifficulty(getLocalData('level'));
+    } else {
+      setRandomNumber(getRandom(ExercisesList.length));
+      setRandomExercise(ExercisesData[ExercisesList[randomNumber]]);
+      setDifficulty('easy');
     }
 
-    setDifficulty(getLocalData('level') || 'easy');
-
     // setRandomExercise(exercises[0]);
-  }, [randomNumber]);
+  }, [randomNumber, randomExercise]);
 
   useEffect(() => {
     if (randomExercise && randomExercise.duration && start) {
