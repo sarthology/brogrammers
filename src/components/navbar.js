@@ -3,13 +3,17 @@ import { Link } from 'gatsby';
 import yoga from '../assets/yoga.svg';
 import audio from '../images/audio.svg';
 
-const Navbar = () => (
+const Navbar = props => (
   <div className="navbar">
     <Link to="/">
       <img src={yoga} alt="" className="icon" />
     </Link>
     <h1>Brogrammer</h1>
-    <img src={audio} className="f-audio" alt="" />
+    {props.isTabActive ? (
+      <img src={audio} className="f-audio" alt="" />
+    ) : (
+      <img src={audio} onClick={props.pauseMusic} className="f-audio" alt="" />
+    )}
   </div>
 );
 
