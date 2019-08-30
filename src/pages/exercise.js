@@ -1,9 +1,12 @@
-import React, { Component } from 'react';
+import React, { useState, useEffect,Component } from 'react';
+import { Timer } from 'easytimer.js';
 import NavBar from '../components/navbar';
 import Exercise from '../components/exercise';
 import './index.css';
 import queryString from 'query-string';
 
+
+import alertAudioFile from '../assets/alert.wav';
 
 // exercises gif
 import burpeesGif from '../images/burpees.gif';
