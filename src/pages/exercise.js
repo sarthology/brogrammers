@@ -1,48 +1,35 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useLayoutEffect } from 'react';
+import queryString from 'query-string';
 import { Timer } from 'easytimer.js';
 import NavBar from '../components/navbar';
 import Exercise from '../components/exercise';
-import exercises from '../assets/exercises';
+import ExercisesData from '../api/exercises';
+import ExercisesList from '../api/exercises-list';
 import './index.css';
 
 import alertAudioFile from '../assets/alert.wav';
 
-const alarm = new Audio(alertAudioFile);
-let isActive = false;
-
-if (!document.hasFocus() && !isActive) {
-  alarm.play();
-}
-
-const stopAlarm = () => {
-  isActive = true;
-  alarm.pause();
-};
-
-const random = () => {
-  const random = localStorage.getItem('random')
-    ? localStorage.getItem('random')
-    : localStorage.setItem(
-        'random',
-        Math.floor(Math.random() * exercises.length)
-      );
-
-  return random;
-};
-
 const ExercisePage = () => {
-  const randomNumber = random();
+  const audioFile =
+    typeof window !== 'undefined' ? new Audio(alertAudioFile) : null;
 
   const [time, setTime] = useState(null);
   const [start, setStart] = useState(false);
-  const [timer, setTimer] = useState(null);
+  const [randomNumber, setRandomNumber] = useState(null);
   const [randomExercise, setRandomExercise] = useState(null);
+  const [isActive, setIsActive] = useState(false);
+  const [difficulty, setDifficulty] = useState(null);
+
+  const [timer] = useState(new Timer());
+  const [alarm] = useState(audioFile);
 
   const handleStartExercise = e => {
     e.preventDefault();
 
-    alarm.pause();
-    isActive = true;
+    if (typeof window !== 'undefined') {
+      alarm.pause();
+      setIsActive(true);
+    }
 
     if (start) {
       timer.pause();
@@ -51,14 +38,70 @@ const ExercisePage = () => {
     setStart(!start);
 
     if (randomExercise && randomExercise.reps && start) {
+      setTime(null);
       localStorage.removeItem('random');
       window.location = '/';
     }
   };
 
+  const handlePauseAlarm = e => {
+    e.preventDefault();
+
+    if (typeof window !== 'undefined') {
+      alarm.pause();
+      setIsActive(true);
+    }
+  };
+
+  useLayoutEffect(() => {
+    const t = setInterval(() => {
+      if (
+        document.visibilityState === 'hidden' &&
+        !isActive &&
+        alarm !== null
+      ) {
+        alarm.play();
+      }
+    }, 3000);
+
+    return () => clearInterval(t);
+  }, [alarm, isActive]);
+
   useEffect(() => {
-    setTimer(new Timer());
-    setRandomExercise(exercises[randomNumber]);
+    const getLocalData = item => {
+      return JSON.parse(localStorage.getItem('customData'))[item];
+    };
+
+    const getRandom = arrayLength => {
+      const random = localStorage.getItem('random')
+        ? localStorage.getItem('random')
+        : localStorage.setItem(
+            'random',
+            Math.floor(Math.random() * arrayLength)
+          );
+
+      return random;
+    };
+
+    const query = queryString.parse(document.location.search);
+
+    if (query && query.customData) {
+      const selectedExercises = getLocalData('selectedExercises');
+
+      if (selectedExercises.length) {
+        if (selectedExercises.length < randomNumber) {
+          localStorage.removeItem('random');
+        }
+
+        setRandomNumber(getRandom(selectedExercises.length));
+        setRandomExercise(ExercisesData[selectedExercises[randomNumber]]);
+      } else {
+        setRandomNumber(getRandom(ExercisesList.length));
+        setRandomExercise(ExercisesData[ExercisesList[randomNumber]]);
+      }
+    }
+
+    setDifficulty(getLocalData('level') || 'easy');
 
     // setRandomExercise(exercises[0]);
   }, [randomNumber]);
@@ -67,7 +110,7 @@ const ExercisePage = () => {
     if (randomExercise && randomExercise.duration && start) {
       timer.start({
         countdown: true,
-        startValues: { minutes: randomExercise.duration }
+        startValues: { minutes: randomExercise.duration[difficulty] }
       });
 
       timer.addEventListener('secondsUpdated', function(e) {
@@ -85,18 +128,12 @@ const ExercisePage = () => {
       timer.addEventListener('secondsUpdated', function(e) {
         setTime(timer.getTimeValues().toString());
       });
-
-      timer.addEventListener('targetAchieved', function(e) {
-        setTime(null);
-        localStorage.removeItem('random');
-        window.location = '/';
-      });
     }
-  }, [randomExercise, start, timer]);
+  }, [randomExercise, start, timer, difficulty]);
 
   return (
     <>
-      <NavBar pauseMusic={stopAlarm} isTabActive={isActive} />
+      <NavBar pauseMusic={handlePauseAlarm} isTabActive={isActive} />
       <div className="exercise-area" id="exercise">
         <div className="exercise-message">
           <h3>Go kill it, you beast</h3>
@@ -104,12 +141,12 @@ const ExercisePage = () => {
         {randomExercise && (
           <Exercise
             gif={randomExercise.gif}
-            reps={randomExercise.reps}
+            reps={randomExercise.reps[difficulty]}
             time={
               time
                 ? time
-                : randomExercise.duration
-                ? randomExercise.duration + ' minutes'
+                : randomExercise.duration[difficulty]
+                ? randomExercise.duration[difficulty] + ' minutes'
                 : null
             }
           />
@@ -125,4 +162,3 @@ const ExercisePage = () => {
 };
 
 export default ExercisePage;
-
