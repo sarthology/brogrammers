@@ -8,7 +8,7 @@ const IndexPage = () => (
   <>
     <div className="nav">
       <h1>
-        <span>Bro</span>grammer !!
+        <span>Bro</span>grammer!
       </h1>
     </div>
     <div className="logo">
