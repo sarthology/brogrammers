@@ -14,12 +14,12 @@ const IndexPage = () => (
       <img src={yoga} className="tada" alt="" />
     </div>
     <div className="start-button">
-      <div className="custom">
-        <Link to="/home">Take Custom Challenge</Link>
-      </div>
-      <div className="create">
-        <Link to="/custom">Create Your Own Challenge</Link>
-      </div>
+      <Link to="/home" style={{ textDecoration: 'none' }} className="custom">
+        Take Custom Challenge
+      </Link>
+      <Link to="/custom" style={{ textDecoration: 'none' }} className="create">
+        Create Your Own Challenge
+        </Link>
     </div>
   </>
 );
