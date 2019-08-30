@@ -62,6 +62,7 @@ const ExercisePage = () => {
     setStart(!start);
 
     if (randomExercise && randomExercise.reps && start) {
+      localStorage.removeItem('random');
       window.location = '/success';
     }
   };
