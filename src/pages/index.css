@@ -200,6 +200,7 @@ audio {
 .choices {
   display: flex;
   margin: 10px;
+  overflow:auto;
 }
 .level {
   color: #389cae;
@@ -218,6 +219,12 @@ audio {
   background: #389cae;
   color: white;
 }
+
+.selected-exercise {
+  background:  #389cae;
+  color:white;
+}
+
 @keyframes floating {
   from {
     transform: translate(0, -0px);
