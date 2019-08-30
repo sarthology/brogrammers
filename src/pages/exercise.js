@@ -34,13 +34,20 @@ const exercises = [
 const alarm = new Audio(alertAudioFile);
 let isActive = false;
 
-if (!document.hasFocus() && !isActive) {
-  alarm.play();
-}
+
+const alarmTime = setInterval(() => {
+  if (!document.hasFocus() && !isActive && window.location.pathname === '/exercise') {
+    document.title = "It's time to exercise!"
+    alarm.play();
+  }
+}, 2000);
+
 
 const stopAlarm = () => {
+  clearInterval(alarmTime)
   isActive = true;
   alarm.pause();
+  document.title = 'exercise'
 };
 
 const ExercisePage = () => {
@@ -54,6 +61,7 @@ const ExercisePage = () => {
 
     alarm.pause();
     isActive = true;
+    document.title = 'exercise'
 
     if (start) {
       timer.pause();
@@ -74,9 +82,9 @@ const ExercisePage = () => {
       const random = localStorage.getItem('random')
         ? localStorage.getItem('random')
         : localStorage.setItem(
-            'random',
-            Math.floor(Math.random() * exercises.length)
-          );
+          'random',
+          Math.floor(Math.random() * exercises.length)
+        );
 
       return random;
     };
@@ -93,11 +101,11 @@ const ExercisePage = () => {
         startValues: { minutes: randomExercise.duration }
       });
 
-      timer.addEventListener('secondsUpdated', function(e) {
+      timer.addEventListener('secondsUpdated', function (e) {
         setTime(timer.getTimeValues().toString());
       });
 
-      timer.addEventListener('targetAchieved', function(e) {
+      timer.addEventListener('targetAchieved', function (e) {
         setTime(null);
         localStorage.removeItem('random');
         window.location = '/';
@@ -105,11 +113,11 @@ const ExercisePage = () => {
     } else if (randomExercise && randomExercise.reps && start) {
       timer.start();
 
-      timer.addEventListener('secondsUpdated', function(e) {
+      timer.addEventListener('secondsUpdated', function (e) {
         setTime(timer.getTimeValues().toString());
       });
 
-      timer.addEventListener('targetAchieved', function(e) {
+      timer.addEventListener('targetAchieved', function (e) {
         setTime(null);
         localStorage.removeItem('random');
         window.location = '/';
@@ -132,8 +140,8 @@ const ExercisePage = () => {
               time
                 ? time
                 : randomExercise.duration
-                ? randomExercise.duration + ' minutes'
-                : null
+                  ? randomExercise.duration + ' minutes'
+                  : null
             }
           />
         )}
