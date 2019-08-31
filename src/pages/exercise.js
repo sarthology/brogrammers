@@ -124,9 +124,12 @@ const ExercisePage = () => {
       });
 
       timer.addEventListener('targetAchieved', function(e) {
-        setTime(null);
-        localStorage.removeItem('random');
-        window.location = '/success';
+        alarm.play();
+        setTimeout(() => {
+          setTime(null);
+          localStorage.removeItem('random');
+          window.location = '/success';
+        }, 3000);
       });
     } else if (randomExercise && randomExercise.reps && start) {
       timer.start();
@@ -135,7 +138,7 @@ const ExercisePage = () => {
         setTime(timer.getTimeValues().toString());
       });
     }
-  }, [randomExercise, start, timer, difficulty]);
+  }, [randomExercise, start, timer, difficulty, alarm]);
 
   return (
     <>
