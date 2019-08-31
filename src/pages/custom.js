@@ -6,28 +6,69 @@ import exercises from '../api/exercises-list';
 import './index.css';
 
 class CustomPage extends Component {
+
+  exercises = [
+    "Jumping Jacks",
+    "Lunges",
+    "Planks",
+    "Squats",
+    "Burpees",
+    "Glute Bridges",
+    "Spinal Balance",
+    "Bicycle Crunches",
+    "Side Lunges",
+    "Jump Squats",
+    "Situps",
+    "Mountain Climbers",
+    "Butt Kicks",
+    "Superman Raises",
+    "Tricep Dips",
+    "Flutter Kicks",
+    "Calf Raises",
+    "Jump Lunges",
+    "Pullups"
+  ];
+
+
   constructor(props) {
     super(props);
+    const customData = JSON.parse(localStorage.getItem("customData"));  
     this.state = {
-      frequency: 2,
-      work: 3,
-      level: ''
-    };
+      frequency : customData && customData.frequency ? customData.frequency : 2,
+      work:  customData && customData.work ? customData.work : 3,
+      level: customData && customData.level ? customData.level : "",
+      selectedExercises: customData && customData.selectedExercises ? customData.selectedExercises : []
+    }
+  }
+  componentDidMount() {
+    // console.log("fsdfsdfdsfds",this.state.selectedExercises);
+    // this.state.selectedExercises((selectEx) => {
+    //   const index = this.exercises.findIndex((exercise) => exercise === selectEx);
+    //   document.getElementById(`${index}${exercise}`).className = "choice selected-exercise";
+    // });
+    const customData = JSON.parse(localStorage.getItem("customData")); 
+    if(customData) {
+      document.getElementById(customData.level).checked = true;
+    }
   }
 
-  selectedExercises = [];
 
-  selectExercise = (exercise, index) => {
-    if (this.selectedExercises.indexOf(exercise) === -1) {
-      this.selectedExercises.push(exercise);
-      document.getElementById(`${index}${exercise}`).className =
-        'choice selected-exercise';
+  selectExercise =(exercise,index) => {
+    if(this.state.selectedExercises.indexOf(exercise) === -1) {
+      let exercises = this.state.selectedExercises;
+      exercises.push(exercise);
+      this.setState({
+        selectedExercises: exercises
+      });
+      document.getElementById(`${index}${exercise}`).className = "choice selected-exercise";
     } else {
-      this.selectedExercises.splice(
-        this.selectedExercises.indexOf(exercise),
-        1
-      );
-      document.getElementById(`${index}${exercise}`).className = 'choice';
+      let exercises = this.state.selectedExercises;
+      // exercises.push(exercise);
+      exercises.splice(this.state.selectedExercises.indexOf(exercise), 1);
+      this.setState({
+        selectedExercises: exercises
+      })
+      document.getElementById(`${index}${exercise}`).className = "choice";
     }
   };
 
@@ -48,19 +89,15 @@ class CustomPage extends Component {
   };
 
   saveCustomData = () => {
-    console.log('inside custom');
     const { frequency, work, level } = this.state;
-    if (this.selectedExercises.length > 0 && frequency && work && level) {
-      localStorage.setItem(
-        'customData',
-        JSON.stringify({
-          frequency,
-          work,
-          level,
-          selectedExercises: this.selectedExercises,
-          startExercise: 0
-        })
-      );
+    if(this.state.selectedExercises.length > 0 && frequency && work && level) {
+      localStorage.setItem ("customData", JSON.stringify({
+        frequency,
+        work,
+        level,
+        selectedExercises: this.state.selectedExercises,
+        startExercise: 1
+      }));
       window.location = '/home?customData=true';
     }
   };
