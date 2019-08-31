@@ -116,7 +116,7 @@ const ExercisePage = () => {
     if (randomExercise && randomExercise.duration && start) {
       timer.start({
         countdown: true,
-        startValues: { minutes: randomExercise.duration[difficulty] }
+        startValues: { seconds: randomExercise.duration[difficulty] }
       });
 
       timer.addEventListener('secondsUpdated', function(e) {
@@ -156,7 +156,7 @@ const ExercisePage = () => {
               time
                 ? time
                 : randomExercise.duration[difficulty]
-                ? randomExercise.duration[difficulty] + ' minutes'
+                ? randomExercise.duration[difficulty] + ' seconds'
                 : null
             }
           />
