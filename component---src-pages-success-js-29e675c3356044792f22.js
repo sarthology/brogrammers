@@ -1,2 +1,0 @@
-(window.webpackJsonp=window.webpackJsonp||[]).push([[7],{202:function(e,a,n){"use strict";n.r(a);var t=n(0),l=n.n(t),r=n(196);n(195);a.default=function(){return l.a.createElement(l.a.Fragment,null,l.a.createElement(r.a,null),l.a.createElement("div",{className:"search-area",id:"search"},l.a.createElement("div",{className:"search-message"},l.a.createElement("h2",null,"Congratulations for completing your challenge..."))))}}}]);
-//# sourceMappingURL=component---src-pages-success-js-29e675c3356044792f22.js.map
