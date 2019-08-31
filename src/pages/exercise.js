@@ -1,65 +1,122 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useLayoutEffect } from 'react';
+import queryString from 'query-string';
 import { Timer } from 'easytimer.js';
 import NavBar from '../components/navbar';
 import Exercise from '../components/exercise';
+import ExercisesData from '../api/exercises';
+import ExercisesList from '../api/exercises-list';
 import './index.css';
 
-// exercises gif
-import burpeesGif from '../images/burpees.gif';
-import highKneesGif from '../images/highknees.gif';
-import lungesGif from '../images/lunges.gif';
-import pushupGif from '../images/pushup.gif';
-import squatsGif from '../images/squats.gif';
-import crunchesGif from '../images/crunches.gif';
-import jumpingGif from '../images/jumping.gif';
-import mountainClimbersGif from '../images/mountainclimbers.gif';
-import planksGif from '../images/planks.gif';
-import stairSteppingGif from '../images/stairstepping.gif';
-
-const exercises = [
-  { gif: burpeesGif, reps: 3, duration: 3 },
-  { gif: highKneesGif, reps: 100, duration: 1 },
-  { gif: lungesGif, reps: 100, duration: 2 },
-  { gif: pushupGif, reps: 100, duration: 1 },
-  { gif: squatsGif, reps: 100, duration: 2 },
-  { gif: crunchesGif, reps: 100 },
-  { gif: jumpingGif, reps: 100 },
-  { gif: mountainClimbersGif, reps: 100 },
-  { gif: planksGif, reps: 100 },
-  { gif: stairSteppingGif, reps: 100 }
-];
+import alertAudioFile from '../assets/alert.wav';
 
 const ExercisePage = () => {
+  const audioFile =
+    typeof window !== 'undefined' ? new Audio(alertAudioFile) : null;
+
   const [time, setTime] = useState(null);
   const [start, setStart] = useState(false);
-  const [timer, setTimer] = useState(null);
+  const [randomNumber, setRandomNumber] = useState(null);
   const [randomExercise, setRandomExercise] = useState(null);
+  const [exerciseName, setExerciseName] = useState(null);
+  const [isActive, setIsActive] = useState(false);
+  const [difficulty, setDifficulty] = useState(null);
+
+  const [timer] = useState(new Timer());
+  const [alarm] = useState(audioFile);
 
   const handleStartExercise = e => {
     e.preventDefault();
+
+    if (typeof window !== 'undefined') {
+      alarm.pause();
+      setIsActive(true);
+    }
 
     if (start) {
       timer.pause();
     }
 
     setStart(!start);
+
+    if (randomExercise && randomExercise.reps && start) {
+      setTime(null);
+      localStorage.removeItem('random');
+      window.location = '/success';
+    }
   };
 
-  useEffect(() => {
-    setTimer(new Timer());
+  const handlePauseAlarm = e => {
+    e.preventDefault();
 
-    setRandomExercise(
-      exercises[Math.floor(Math.random() * (exercises.length + 1))]
-    );
+    if (typeof window !== 'undefined') {
+      alarm.pause();
+      setIsActive(true);
+    }
+  };
+
+  useLayoutEffect(() => {
+    setInterval(() => {
+      if (
+        document.visibilityState === 'hidden' &&
+        !isActive &&
+        alarm !== null
+      ) {
+        alarm.play();
+      }
+    }, 3000);
+
+    // return () => clearInterval(t);
+  }, [alarm, isActive]);
+
+  useEffect(() => {
+    const getLocalData = item => {
+      const localData = localStorage.getItem('customData');
+      const data =
+        localData && JSON.parse(localData)[item]
+          ? JSON.parse(localData)[item]
+          : null;
+
+      return data;
+    };
+
+    const getRandom = arrayLength => {
+      const random = localStorage.getItem('random')
+        ? localStorage.getItem('random')
+        : localStorage.setItem(
+            'random',
+            Math.floor(Math.random() * arrayLength)
+          );
+
+      return random;
+    };
+
+    const query = queryString.parse(document.location.search);
+    const selectedExercises = getLocalData('selectedExercises');
+
+    if (query && query.customData && selectedExercises.length) {
+      if (selectedExercises.length < randomNumber) {
+        localStorage.removeItem('random');
+      }
+
+      setRandomNumber(getRandom(selectedExercises.length));
+      setRandomExercise(ExercisesData[selectedExercises[randomNumber]]);
+      setExerciseName(selectedExercises[randomNumber]);
+      setDifficulty(getLocalData('level'));
+    } else {
+      setRandomNumber(getRandom(ExercisesList.length));
+      setRandomExercise(ExercisesData[ExercisesList[randomNumber]]);
+      setExerciseName(ExercisesList[randomNumber]);
+      setDifficulty('easy');
+    }
 
     // setRandomExercise(exercises[0]);
-  }, []);
+  }, [randomNumber, randomExercise, exerciseName]);
 
   useEffect(() => {
     if (randomExercise && randomExercise.duration && start) {
       timer.start({
         countdown: true,
-        startValues: { minutes: randomExercise.duration }
+        startValues: { minutes: randomExercise.duration[difficulty] }
       });
 
       timer.addEventListener('secondsUpdated', function(e) {
@@ -67,8 +124,12 @@ const ExercisePage = () => {
       });
 
       timer.addEventListener('targetAchieved', function(e) {
-        setTime(null);
-        window.location = '/';
+        alarm.play();
+        setTimeout(() => {
+          setTime(null);
+          localStorage.removeItem('random');
+          window.location = '/success';
+        }, 3000);
       });
     } else if (randomExercise && randomExercise.reps && start) {
       timer.start();
@@ -76,31 +137,27 @@ const ExercisePage = () => {
       timer.addEventListener('secondsUpdated', function(e) {
         setTime(timer.getTimeValues().toString());
       });
-
-      timer.addEventListener('targetAchieved', function(e) {
-        setTime(null);
-        window.location = '/';
-      });
     }
-  }, [randomExercise, start, timer]);
+  }, [randomExercise, start, timer, difficulty, alarm]);
 
   return (
     <>
-      <NavBar />
+      <NavBar pauseMusic={handlePauseAlarm} isTabActive={isActive} />
       <div className="exercise-area" id="exercise">
         <div className="exercise-message">
           <h3>Go kill it, you beast</h3>
+          {exerciseName && <h3>{exerciseName}</h3>}
         </div>
         <p class="exercise-name">Exercise Name</p>
         {randomExercise && (
           <Exercise
             gif={randomExercise.gif}
-            reps={randomExercise.reps}
+            reps={randomExercise.reps[difficulty]}
             time={
               time
                 ? time
-                : randomExercise.duration
-                ? randomExercise.duration + ' minutes'
+                : randomExercise.duration[difficulty]
+                ? randomExercise.duration[difficulty] + ' minutes'
                 : null
             }
           />

@@ -1,5 +1,5 @@
 import React from 'react';
-import { Link } from 'gatsby';
+import { navigate } from 'gatsby';
 import './index.css';
 import yoga from '../assets/yoga.svg';
 import product from '../assets/product.png';
@@ -15,12 +15,24 @@ const IndexPage = () => (
       <img src={yoga} className="tada" alt="" />
     </div>
     <div className="start-button">
-      <div className="custom">
-        <Link to="/home">Take Custom Challenge</Link>
+      <div
+        className="custom"
+        onClick={e => {
+          e.preventDefault();
+          navigate('/home');
+        }}
+      >
+        Take Random Challenge
       </div>
-      <div className="create">
-        <Link to="/custom">Create Your Own Challenge</Link>
-      </div>  
+      <div
+        className="create"
+        onClick={e => {
+          e.preventDefault();
+          navigate('/custom');
+        }}
+      >
+        Create Your Own Challenge
+      </div>
     </div>
     <div className="producthunt">
       <div className="close-it">x</div>
@@ -29,7 +41,7 @@ const IndexPage = () => (
         <p>Hey, lovely people! We're on ProductHunt!</p>
         <div className="product-link">Find us here</div>
       </div>
-    </div>
+    </div>    
     <div className="copyright-link">
       <p>Made with <span>❤</span> by <a href="" target="_blank" class="team-xenox-link">Team XenoX 
       <img src={require('../assets/fire.svg')} alt="" />
