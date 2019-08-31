@@ -44,9 +44,9 @@ const ExercisePage = () => {
       setTime(null);
       localStorage.removeItem('random');
       if (query && query.customData) {
-        return window.location = '/success?customData=true';
+        return (window.location = '/success?customData=true');
       }
-      window.location = "/success";
+      window.location = '/success';
     }
   };
 
@@ -115,7 +115,12 @@ const ExercisePage = () => {
   }, [randomNumber, randomExercise, exerciseName]);
 
   useEffect(() => {
-    if (randomExercise && randomExercise.duration && start) {
+    if (
+      randomExercise &&
+      randomExercise.duration &&
+      randomExercise.duration['easy'] !== 0 &&
+      start
+    ) {
       timer.start({
         countdown: true,
         startValues: { seconds: randomExercise.duration[difficulty] }
@@ -131,7 +136,7 @@ const ExercisePage = () => {
           setTime(null);
           localStorage.removeItem('random');
           if (query && query.customData) {
-            return window.location = '/success?customData=true';
+            return (window.location = '/success?customData=true');
           }
           window.location = '/success';
         }, 3000);
@@ -153,15 +158,18 @@ const ExercisePage = () => {
           <h3>Go kill it, you beast</h3>
           {exerciseName && <p className="exercise-name">{exerciseName}</p>}
         </div>
-        <p class="exercise-name">Exercise Name</p>
         {randomExercise && (
           <Exercise
             gif={randomExercise.gif}
-            reps={randomExercise.reps[difficulty]}
+            reps={
+              randomExercise.reps[difficulty] !== 0
+                ? randomExercise.reps[difficulty]
+                : null
+            }
             time={
               time
                 ? time
-                : randomExercise.duration[difficulty]
+                : randomExercise.duration[difficulty] !== 0
                 ? randomExercise.duration[difficulty] + ' seconds'
                 : null
             }

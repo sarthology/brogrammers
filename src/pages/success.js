@@ -1,21 +1,20 @@
 import React from 'react';
-import { navigate } from 'gatsby';
 import success from '../assets/success.svg';
 import queryString from 'query-string';
 import './index.css';
 
 const SuccessPage = () => {
   const query = queryString.parse(document.location.search);
-  const onDone = (e) => {
+  const onDone = e => {
     e.preventDefault();
-    if(query && query.customData) {
-      let customData = JSON.parse(localStorage.getItem("customData"));
-      customData.startExercise += 1 ;
-      localStorage.setItem("customData", JSON.stringify(customData));
-      return window.location = "/home?customData=true";
+    if (query && query.customData) {
+      let customData = JSON.parse(localStorage.getItem('customData'));
+      customData.startExercise += 1;
+      localStorage.setItem('customData', JSON.stringify(customData));
+      return (window.location = '/home?customData=true');
     }
-    window.location = "/home?createRandom=true";
-  }
+    window.location = '/home?createRandom=true';
+  };
 
   return (
     <>
@@ -30,12 +29,9 @@ const SuccessPage = () => {
       <div className="exercise-message">
         <h3>Now go and hydrate!</h3>
       </div>
+
       <div className="success">
-        <button
-          type="button"
-          className="success-button"
-          onClick={onDone}
-        >
+        <button type="button" className="success-button" onClick={onDone}>
           Done
         </button>
       </div>
