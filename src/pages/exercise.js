@@ -40,7 +40,7 @@ const ExercisePage = () => {
     if (randomExercise && randomExercise.reps && start) {
       setTime(null);
       localStorage.removeItem('random');
-      window.location = '/';
+      window.location = '/success';
     }
   };
 
@@ -54,7 +54,7 @@ const ExercisePage = () => {
   };
 
   useLayoutEffect(() => {
-    const t = setInterval(() => {
+    setInterval(() => {
       if (
         document.visibilityState === 'hidden' &&
         !isActive &&
@@ -64,7 +64,7 @@ const ExercisePage = () => {
       }
     }, 3000);
 
-    return () => clearInterval(t);
+    // return () => clearInterval(t);
   }, [alarm, isActive]);
 
   useEffect(() => {
@@ -123,7 +123,7 @@ const ExercisePage = () => {
       timer.addEventListener('targetAchieved', function(e) {
         setTime(null);
         localStorage.removeItem('random');
-        window.location = '/';
+        window.location = '/success';
       });
     } else if (randomExercise && randomExercise.reps && start) {
       timer.start();
