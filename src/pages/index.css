@@ -481,7 +481,7 @@ audio {
 }
 .producthunt {
   position: fixed;
-  width: 250px;
+  width: 210px;
   height: 180px;
   background: white;
   bottom: 10px;
@@ -577,6 +577,7 @@ audio {
 .copyright-link img {
   width: 20px;
   height: 20px;
+  margin-bottom:-2px;
 }
 
 .copyright-link .join-us {
