@@ -4,7 +4,11 @@ import queryString from 'query-string';
 import './index.css';
 
 const SuccessPage = () => {
-  const query = queryString.parse(document.location.search);
+  const query =
+    typeof window !== 'undefined'
+      ? queryString.parse(document.location.search)
+      : '';
+
   const onDone = e => {
     e.preventDefault();
     if (query && query.customData) {
