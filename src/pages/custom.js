@@ -6,39 +6,40 @@ import exercises from '../api/exercises-list';
 import './index.css';
 
 class CustomPage extends Component {
-
   exercises = [
-    "Jumping Jacks",
-    "Lunges",
-    "Planks",
-    "Squats",
-    "Burpees",
-    "Glute Bridges",
-    "Spinal Balance",
-    "Bicycle Crunches",
-    "Side Lunges",
-    "Jump Squats",
-    "Situps",
-    "Mountain Climbers",
-    "Butt Kicks",
-    "Superman Raises",
-    "Tricep Dips",
-    "Flutter Kicks",
-    "Calf Raises",
-    "Jump Lunges",
-    "Pullups"
+    'Jumping Jacks',
+    'Lunges',
+    'Planks',
+    'Squats',
+    'Burpees',
+    'Glute Bridges',
+    'Spinal Balance',
+    'Bicycle Crunches',
+    'Side Lunges',
+    'Jump Squats',
+    'Situps',
+    'Mountain Climbers',
+    'Butt Kicks',
+    'Superman Raises',
+    'Tricep Dips',
+    'Flutter Kicks',
+    'Calf Raises',
+    'Jump Lunges',
+    'Pullups'
   ];
-
 
   constructor(props) {
     super(props);
-    const customData = JSON.parse(localStorage.getItem("customData"));  
+    const customData = JSON.parse(localStorage.getItem('customData'));
     this.state = {
-      frequency : customData && customData.frequency ? customData.frequency : 2,
-      work:  customData && customData.work ? customData.work : 3,
-      level: customData && customData.level ? customData.level : "",
-      selectedExercises: customData && customData.selectedExercises ? customData.selectedExercises : []
-    }
+      frequency: customData && customData.frequency ? customData.frequency : 2,
+      work: customData && customData.work ? customData.work : 3,
+      level: customData && customData.level ? customData.level : '',
+      selectedExercises:
+        customData && customData.selectedExercises
+          ? customData.selectedExercises
+          : []
+    };
   }
   componentDidMount() {
     // console.log("fsdfsdfdsfds",this.state.selectedExercises);
@@ -46,29 +47,29 @@ class CustomPage extends Component {
     //   const index = this.exercises.findIndex((exercise) => exercise === selectEx);
     //   document.getElementById(`${index}${exercise}`).className = "choice selected-exercise";
     // });
-    const customData = JSON.parse(localStorage.getItem("customData")); 
-    if(customData) {
+    const customData = JSON.parse(localStorage.getItem('customData'));
+    if (customData) {
       document.getElementById(customData.level).checked = true;
     }
   }
 
-
-  selectExercise =(exercise,index) => {
-    if(this.state.selectedExercises.indexOf(exercise) === -1) {
+  selectExercise = (exercise, index) => {
+    if (this.state.selectedExercises.indexOf(exercise) === -1) {
       let exercises = this.state.selectedExercises;
       exercises.push(exercise);
       this.setState({
         selectedExercises: exercises
       });
-      document.getElementById(`${index}${exercise}`).className = "choice selected-exercise";
+      document.getElementById(`${index}${exercise}`).className =
+        'choice selected-exercise';
     } else {
       let exercises = this.state.selectedExercises;
       // exercises.push(exercise);
       exercises.splice(this.state.selectedExercises.indexOf(exercise), 1);
       this.setState({
         selectedExercises: exercises
-      })
-      document.getElementById(`${index}${exercise}`).className = "choice";
+      });
+      document.getElementById(`${index}${exercise}`).className = 'choice';
     }
   };
 
@@ -90,14 +91,17 @@ class CustomPage extends Component {
 
   saveCustomData = () => {
     const { frequency, work, level } = this.state;
-    if(this.state.selectedExercises.length > 0 && frequency && work && level) {
-      localStorage.setItem ("customData", JSON.stringify({
-        frequency,
-        work,
-        level,
-        selectedExercises: this.state.selectedExercises,
-        startExercise: 1
-      }));
+    if (this.state.selectedExercises.length > 0 && frequency && work && level) {
+      localStorage.setItem(
+        'customData',
+        JSON.stringify({
+          frequency,
+          work,
+          level,
+          selectedExercises: this.state.selectedExercises,
+          startExercise: 1
+        })
+      );
       window.location = '/home?customData=true';
     }
   };
@@ -170,7 +174,9 @@ class CustomPage extends Component {
                   value="hard"
                   onClick={() => this.selectLevel('hard')}
                 />
-                <label htmlFor="hard" className="hard-label">Hard</label>
+                <label htmlFor="hard" className="hard-label">
+                  Hard
+                </label>
               </div>
             </div>
           </div>
