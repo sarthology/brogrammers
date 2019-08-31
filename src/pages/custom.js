@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import { navigate } from 'gatsby';
 import NavBar from '../components/navbar';
 import InputRange from 'react-input-range';
 import exercises from '../api/exercises-list';
@@ -129,7 +130,7 @@ class CustomPage extends Component {
             startExercise: 1
           })
         );
-        window.location = '/home?customData=true';
+        navigate('/home?customData=true');
       }
     }
   };

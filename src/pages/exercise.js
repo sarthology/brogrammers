@@ -1,4 +1,5 @@
 import React, { useState, useEffect, useLayoutEffect } from 'react';
+import { navigate } from 'gatsby';
 import queryString from 'query-string';
 import { Timer } from 'easytimer.js';
 import NavBar from '../components/navbar';
@@ -47,9 +48,8 @@ const ExercisePage = () => {
       setTime(null);
       localStorage.removeItem('random');
       if (query && query.customData) {
-        return (window.location = '/success?customData=true');
-      }
-      window.location = '/success';
+        navigate('/success?customData=true');
+      } else navigate('/success');
     }
   };
 
@@ -143,9 +143,8 @@ const ExercisePage = () => {
           setTime(null);
           localStorage.removeItem('random');
           if (query && query.customData) {
-            return (window.location = '/success?customData=true');
-          }
-          window.location = '/success';
+            navigate('/success?customData=true');
+          } else navigate('/success');
         }, 3000);
       });
     } else if (randomExercise && randomExercise.reps && start) {

@@ -26,7 +26,7 @@ const HomePage = () => {
       if (customData.startExercise * customData.frequency <= customData.work) {
         customSeconds = 3600 * customData['frequency'];
       } else {
-        return (window.location = '/');
+        navigate('/');
       }
     }
     if (query && query.createRandom) {
@@ -48,9 +48,8 @@ const HomePage = () => {
     timer.addEventListener('targetAchieved', function(e) {
       setTime(null);
       if (query && query.customData) {
-        return (window.location = '/exercise?customData=true');
-      }
-      window.location = '/exercise';
+        navigate('/exercise?customData=true');
+      } else navigate('/exercise');
     });
   }, []);
 

@@ -1,4 +1,5 @@
 import React from 'react';
+import { navigate } from 'gatsby';
 import success from '../assets/success.svg';
 import queryString from 'query-string';
 import './index.css';
@@ -15,9 +16,8 @@ const SuccessPage = () => {
       let customData = JSON.parse(localStorage.getItem('customData'));
       customData.startExercise += 1;
       localStorage.setItem('customData', JSON.stringify(customData));
-      return (window.location = '/home?customData=true');
-    }
-    window.location = '/home?createRandom=true';
+      navigate('/home?customData=true');
+    } else navigate('/home?createRandom=true');
   };
 
   return (
