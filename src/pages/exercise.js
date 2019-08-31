@@ -10,6 +10,8 @@ import './index.css';
 import alertAudioFile from '../assets/alert.wav';
 
 const ExercisePage = () => {
+  const query = queryString.parse(document.location.search);
+
   const audioFile =
     typeof window !== 'undefined' ? new Audio(alertAudioFile) : null;
 
@@ -41,7 +43,10 @@ const ExercisePage = () => {
     if (randomExercise && randomExercise.reps && start) {
       setTime(null);
       localStorage.removeItem('random');
-      window.location = '/success';
+      if (query && query.customData) {
+        return window.location = '/success?customData=true';
+      }
+      window.location = "/success";
     }
   };
 
@@ -88,7 +93,6 @@ const ExercisePage = () => {
       return random;
     };
 
-    const query = queryString.parse(document.location.search);
     const selectedExercises = getLocalData('selectedExercises');
 
     if (query && query.customData && selectedExercises.length) {
@@ -126,6 +130,9 @@ const ExercisePage = () => {
         setTimeout(() => {
           setTime(null);
           localStorage.removeItem('random');
+          if (query && query.customData) {
+            return window.location = '/success?customData=true';
+          }
           window.location = '/success';
         }, 3000);
       });
@@ -144,7 +151,7 @@ const ExercisePage = () => {
       <div className="exercise-area" id="exercise">
         <div className="exercise-message">
           <h3>Go kill it, you beast</h3>
-          {exerciseName && <p class="exercise-name">{exerciseName}</p>}
+          {exerciseName && <p className="exercise-name">{exerciseName}</p>}
         </div>
         <p class="exercise-name">Exercise Name</p>
         {randomExercise && (
