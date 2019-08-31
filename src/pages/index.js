@@ -39,19 +39,19 @@ const IndexPage = () => (
       <div className="close-it">x</div>
       <img src={product} alt="" />
       <div className="button-pro">
-        <p>Hey, lovely people! We're on ProductHunt!</p>
+        <p>Hey, We're on ProductHunt!</p>
         <div className="product-link">Find us here</div>
       </div>
     </div>
     <div className="copyright-link">
       <p>
         Made with <span>❤</span> by{' '}
-        <a href="" target="_blank" className="team-xenox-link">
+        <a href="https://teamxenox.com/" target="_blank" className="team-xenox-link">
           Team XenoX
           <img src={fire} alt="" />
         </a>
       </p>
-      <a href="" className="join-us">
+      <a href="https://github.com/sarthology/XenoXMultiverse/tree/master" className="join-us">
         Join us
       </a>
     </div>
