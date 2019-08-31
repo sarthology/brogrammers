@@ -75,19 +75,24 @@ audio {
   display: none;
 }
 
-.logo img{
+.logo img {
   width: 350px;
 }
-.success img{
-  width:250px;
+.success img {
+  width: 250px;
 }
-.logo, .action, .success{
+.logo,
+.action,
+.success {
   margin: 0 auto;
   justify-content: center;
   display: grid;
 }
 
-.custom, .create, .start-exercise, .success-button{
+.custom,
+.create,
+.start-exercise,
+.success-button {
   text-align: center;
   border: 2px solid #173947;
   margin-left: 10px;
@@ -98,7 +103,8 @@ audio {
   cursor: pointer;
 }
 
-.create, .custom-session {
+.create,
+.custom-session {
   background: #e56166;
   border-color: #e56166;
   color: white;
@@ -160,7 +166,10 @@ audio {
   margin-top: 100px;
 }
 
-.search-message, .timer, .exercise-message, .success-message{
+.search-message,
+.timer,
+.exercise-message,
+.success-message {
   margin-top: 30px;
   text-align: center;
   color: #173947;
@@ -172,12 +181,13 @@ audio {
   justify-content: center;
   margin-top: 20px;
 }
-.exercise-gif img{
-  width:480px;
-  height:250px;
+.exercise-gif img {
+  width: 480px;
+  height: 250px;
 }
 
-.exercise-message, .success-message{
+.exercise-message,
+.success-message {
   color: #e56166;
 }
 
@@ -199,10 +209,10 @@ audio {
 .exercise-info span {
   color: #389cae;
 }
-.exercise-name{
-  font-size:1.4em;
+.exercise-name {
+  font-size: 1.4em;
   text-align: center;
-  color:#173947;
+  color: #173947;
   font-weight: 400;
   font-family: komikax;
 }
@@ -237,6 +247,7 @@ audio {
   width: 0;
   height: 0;
 }
+
 .level {
   color: #389cae;
   font-size: 18px;
@@ -259,11 +270,6 @@ audio {
   color: white;
 }
 
-.selected-exercise {
-  background:  #389cae;
-  color:white;
-}
-
 @keyframes floating {
   from {
     transform: translate(0, -0px);
@@ -281,15 +287,21 @@ audio {
     -webkit-transform: scale3d(1, 1, 1);
     transform: scale3d(1, 1, 1);
   }
-  10%, 20% {
+  10%,
+  20% {
     -webkit-transform: scale3d(0.9, 0.9, 0.9) rotate3d(0, 0, 1, -3deg);
     transform: scale3d(0.9, 0.9, 0.9) rotate3d(0, 0, 1, -3deg);
   }
-  30%, 50%, 70%, 90% {
+  30%,
+  50%,
+  70%,
+  90% {
     -webkit-transform: scale3d(1.1, 1.1, 1.1) rotate3d(0, 0, 1, 3deg);
     transform: scale3d(1.1, 1.1, 1.1) rotate3d(0, 0, 1, 3deg);
   }
-  40%, 60%, 80% {
+  40%,
+  60%,
+  80% {
     -webkit-transform: scale3d(1.1, 1.1, 1.1) rotate3d(0, 0, 1, -3deg);
     transform: scale3d(1.1, 1.1, 1.1) rotate3d(0, 0, 1, -3deg);
   }
@@ -304,15 +316,21 @@ audio {
     -webkit-transform: scale3d(1, 1, 1);
     transform: scale3d(1, 1, 1);
   }
-  10%, 20% {
+  10%,
+  20% {
     -webkit-transform: scale3d(0.9, 0.9, 0.9) rotate3d(0, 0, 1, -3deg);
     transform: scale3d(0.9, 0.9, 0.9) rotate3d(0, 0, 1, -3deg);
   }
-  30%, 50%, 70%, 90% {
+  30%,
+  50%,
+  70%,
+  90% {
     -webkit-transform: scale3d(1.1, 1.1, 1.1) rotate3d(0, 0, 1, 3deg);
     transform: scale3d(1.1, 1.1, 1.1) rotate3d(0, 0, 1, 3deg);
   }
-  40%, 60%, 80% {
+  40%,
+  60%,
+  80% {
     -webkit-transform: scale3d(1.1, 1.1, 1.1) rotate3d(0, 0, 1, -3deg);
     transform: scale3d(1.1, 1.1, 1.1) rotate3d(0, 0, 1, -3deg);
   }
@@ -419,7 +437,7 @@ audio {
   left: 10px;
 }
 
-.checkbox input[type='checkbox']:checked~label::before {
+.checkbox input[type='checkbox']:checked ~ label::before {
   color: #389cae;
 }
 
@@ -467,6 +485,9 @@ audio {
   border: 1px solid #e3e3e3;
   padding: 10px;
   box-shadow: 0 1px 5px rgba(0, 0, 0, 0.15);
+  animation: linear finite alternate;
+  animation-name: run;
+  animation-duration: 2s;
   -webkit-animation: linear finite alternate;
   -webkit-animation-name: run;
   -webkit-animation-duration: 2s;
@@ -518,6 +539,15 @@ audio {
   color: #173947;
 }
 
+@keyframes run {
+  0% {
+    right: -500px;
+  }
+  100% {
+    right: 0px;
+  }
+}
+
 @-webkit-keyframes run {
   0% {
     right: -500px;
@@ -551,8 +581,8 @@ audio {
   display: grid;
   align-content: center;
 }
-.success-button{
-  padding:20px 100px;
+.success-button {
+  padding: 20px 100px;
   background: #ffffff;
 }
 @-webkit-keyframes pulse {
