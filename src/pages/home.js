@@ -13,7 +13,15 @@ const HomePage = () => {
     let customSeconds;
     if(query && query.customData) {
       let customData = JSON.parse(localStorage.getItem("customData"));
-      customSeconds = 3600 * customData["frequency"];
+      if(customData.startExercise * customData.frequency <= customData.work) {
+        customSeconds = 3600 * customData["frequency"];
+      } else {
+        return window.location = "/";
+      }
+    }
+    if(query && query.createRandom) {
+      const randomMinutes = Math.floor(Math.random() * 21) + 40;
+      customSeconds = 60 * randomMinutes;
     }
   
     const timer = new Timer();
