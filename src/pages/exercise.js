@@ -17,6 +17,7 @@ const ExercisePage = () => {
   const [start, setStart] = useState(false);
   const [randomNumber, setRandomNumber] = useState(null);
   const [randomExercise, setRandomExercise] = useState(null);
+  const [exerciseName, setExerciseName] = useState(null);
   const [isActive, setIsActive] = useState(false);
   const [difficulty, setDifficulty] = useState(null);
 
@@ -40,7 +41,7 @@ const ExercisePage = () => {
     if (randomExercise && randomExercise.reps && start) {
       setTime(null);
       localStorage.removeItem('random');
-      window.location = '/';
+      window.location = '/success';
     }
   };
 
@@ -54,7 +55,7 @@ const ExercisePage = () => {
   };
 
   useLayoutEffect(() => {
-    const t = setInterval(() => {
+    setInterval(() => {
       if (
         document.visibilityState === 'hidden' &&
         !isActive &&
@@ -64,7 +65,7 @@ const ExercisePage = () => {
       }
     }, 3000);
 
-    return () => clearInterval(t);
+    // return () => clearInterval(t);
   }, [alarm, isActive]);
 
   useEffect(() => {
@@ -99,21 +100,23 @@ const ExercisePage = () => {
 
       setRandomNumber(getRandom(selectedExercises.length));
       setRandomExercise(ExercisesData[selectedExercises[randomNumber]]);
+      setExerciseName(selectedExercises[randomNumber]);
       setDifficulty(getLocalData('level'));
     } else {
       setRandomNumber(getRandom(ExercisesList.length));
       setRandomExercise(ExercisesData[ExercisesList[randomNumber]]);
+      setExerciseName(ExercisesList[randomNumber]);
       setDifficulty('easy');
     }
 
     // setRandomExercise(exercises[0]);
-  }, [randomNumber, randomExercise]);
+  }, [randomNumber, randomExercise, exerciseName]);
 
   useEffect(() => {
     if (randomExercise && randomExercise.duration && start) {
       timer.start({
         countdown: true,
-        startValues: { minutes: randomExercise.duration[difficulty] }
+        startValues: { seconds: randomExercise.duration[difficulty] }
       });
 
       timer.addEventListener('secondsUpdated', function(e) {
@@ -121,9 +124,12 @@ const ExercisePage = () => {
       });
 
       timer.addEventListener('targetAchieved', function(e) {
-        setTime(null);
-        localStorage.removeItem('random');
-        window.location = '/';
+        alarm.play();
+        setTimeout(() => {
+          setTime(null);
+          localStorage.removeItem('random');
+          window.location = '/success';
+        }, 3000);
       });
     } else if (randomExercise && randomExercise.reps && start) {
       timer.start();
@@ -132,7 +138,7 @@ const ExercisePage = () => {
         setTime(timer.getTimeValues().toString());
       });
     }
-  }, [randomExercise, start, timer, difficulty]);
+  }, [randomExercise, start, timer, difficulty, alarm]);
 
   return (
     <>
@@ -140,6 +146,7 @@ const ExercisePage = () => {
       <div className="exercise-area" id="exercise">
         <div className="exercise-message">
           <h3>Go kill it, you beast</h3>
+          {exerciseName && <p class="exercise-name">{exerciseName}</p>}
         </div>
         {randomExercise && (
           <Exercise
@@ -149,7 +156,7 @@ const ExercisePage = () => {
               time
                 ? time
                 : randomExercise.duration[difficulty]
-                ? randomExercise.duration[difficulty] + ' minutes'
+                ? randomExercise.duration[difficulty] + ' seconds'
                 : null
             }
           />

@@ -21,7 +21,7 @@ const ExercisesList = [
   'Squats',
   'Stair Stepping',
   'Superman Raises',
-  'Tricedips'
+  'Tricep Dips'
 ];
 
 export default ExercisesList;
