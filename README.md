@@ -6,7 +6,7 @@
 
 ## Brogrammer
 
-ProGram is a CLI based, self-hosted photo sharing app. You can think of it as Instagram for programmers who want to keep their data secure while still being able to showcase their best shots in a cool gallery style.
+Brogrammer is simple way to help people with sedentary office jobs maintain a fitter lifestyle. Brogrammer is for the busy bees. It lets you easily squeeze mini workouts in your busy schedule and keep your body moving, even if you don't have time to go to the gym.
 
 ## Screenshots
 ![](https://i.imgur.com/ItzWzpR.gif)
@@ -43,10 +43,6 @@ That's it.
 ## Contributing
 
 Feel free to contribute to this project and treat it like your own. 😊
-
-## Useful Links
-
-- Website: [https://sarthology.github.io/proGramCLI/](https://sarthology.github.io/proGramCLI/)
 
 ## License
 
