@@ -17,6 +17,7 @@ const ExercisePage = () => {
   const [start, setStart] = useState(false);
   const [randomNumber, setRandomNumber] = useState(null);
   const [randomExercise, setRandomExercise] = useState(null);
+  const [exerciseName, setExerciseName] = useState(null);
   const [isActive, setIsActive] = useState(false);
   const [difficulty, setDifficulty] = useState(null);
 
@@ -99,15 +100,17 @@ const ExercisePage = () => {
 
       setRandomNumber(getRandom(selectedExercises.length));
       setRandomExercise(ExercisesData[selectedExercises[randomNumber]]);
+      setExerciseName(selectedExercises[randomNumber]);
       setDifficulty(getLocalData('level'));
     } else {
       setRandomNumber(getRandom(ExercisesList.length));
       setRandomExercise(ExercisesData[ExercisesList[randomNumber]]);
+      setExerciseName(ExercisesList[randomNumber]);
       setDifficulty('easy');
     }
 
     // setRandomExercise(exercises[0]);
-  }, [randomNumber, randomExercise]);
+  }, [randomNumber, randomExercise, exerciseName]);
 
   useEffect(() => {
     if (randomExercise && randomExercise.duration && start) {
@@ -140,6 +143,7 @@ const ExercisePage = () => {
       <div className="exercise-area" id="exercise">
         <div className="exercise-message">
           <h3>Go kill it, you beast</h3>
+          {exerciseName && <h3>{exerciseName}</h3>}
         </div>
         {randomExercise && (
           <Exercise
