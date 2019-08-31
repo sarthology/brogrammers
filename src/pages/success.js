@@ -11,13 +11,13 @@ const SuccessPage = () => {
           <span>Good</span> Job!
       </h1>
       </div>
-      <div className="success animated pulse">
+      <div className="success pulse">
         <img src={require('../images/success.svg')} className="success" alt="" />
       </div>
       <div className="exercise-message">
         <h3>Now go and hydrate!</h3>
       </div>
-      <div className="action">
+      <div className="success">
         <button type="button" className="success-button" >
          Done
         </button>
