@@ -158,6 +158,7 @@ const ExercisePage = () => {
           <h3>Go kill it, you beast</h3>
           {exerciseName && <p className="exercise-name">{exerciseName}</p>}
         </div>
+        <p class="exercise-name">Exercise Name</p>
         {randomExercise && (
           <Exercise
             gif={randomExercise.gif}

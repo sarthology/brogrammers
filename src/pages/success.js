@@ -29,7 +29,8 @@ const SuccessPage = () => {
       <div className="exercise-message">
         <h3>Now go and hydrate!</h3>
       </div>
-      <div className="action">
+
+      <div className="success">
         <button type="button" className="success-button" onClick={onDone}>
           Done
         </button>
