@@ -329,7 +329,7 @@ const Exercises = {
     }
   },
 
-  Tricedips: {
+  'Tricep Dips': {
     gif:
       'https://raw.githubusercontent.com/sarthology/brogrammers/master/src/images/tricepdips.gif',
     reps: {
