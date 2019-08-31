@@ -60,14 +60,14 @@ const IndexPage = () => {
         <p>
           Made with <span>❤</span> by{' '}
           <a
-            href="https://github.com/sarthology/XenoXMutliverse/tree/master"
+            href="https://teamxenox.com/"
             className="team-xenox-link"
           >
             Team XenoX
             <img src={fire} alt="" />
           </a>
         </p>
-        <a href="" className="join-us">
+        <a href="https://github.com/sarthology/XenoXMutliverse/tree/master" className="join-us">
           Join us
         </a>
       </div>
