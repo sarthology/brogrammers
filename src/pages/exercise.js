@@ -55,17 +55,15 @@ const ExercisePage = () => {
   };
 
   useLayoutEffect(() => {
-    setInterval(() => {
-      if (
-        document.visibilityState === 'hidden' &&
-        !isActive &&
-        alarm !== null
-      ) {
-        alarm.play();
-      }
-    }, 3000);
+    let t;
 
-    // return () => clearInterval(t);
+    if (document.visibilityState === 'hidden' && !isActive && alarm !== null) {
+      t = setInterval(() => {
+        alarm.play();
+      }, 3000);
+    }
+
+    return () => clearInterval(t);
   }, [alarm, isActive]);
 
   useEffect(() => {
@@ -116,7 +114,7 @@ const ExercisePage = () => {
     if (randomExercise && randomExercise.duration && start) {
       timer.start({
         countdown: true,
-        startValues: { minutes: randomExercise.duration[difficulty] }
+        startValues: { seconds: randomExercise.duration[difficulty] }
       });
 
       timer.addEventListener('secondsUpdated', function(e) {
@@ -146,7 +144,7 @@ const ExercisePage = () => {
       <div className="exercise-area" id="exercise">
         <div className="exercise-message">
           <h3>Go kill it, you beast</h3>
-          {exerciseName && <h3>{exerciseName}</h3>}
+          {exerciseName && <p class="exercise-name">{exerciseName}</p>}
         </div>
         <p class="exercise-name">Exercise Name</p>
         {randomExercise && (
@@ -157,7 +155,7 @@ const ExercisePage = () => {
               time
                 ? time
                 : randomExercise.duration[difficulty]
-                ? randomExercise.duration[difficulty] + ' minutes'
+                ? randomExercise.duration[difficulty] + ' seconds'
                 : null
             }
           />
