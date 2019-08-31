@@ -51,7 +51,7 @@ const IndexPage = () => {
           </div>
           <img src={product} alt="" />
           <div className="button-pro">
-            <p>Hey, lovely people! We're on ProductHunt!</p>
+            <p>"Hey, We're on ProductHunt!"</p>
             <div className="product-link">Find us here</div>
           </div>
         </div>
