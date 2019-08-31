@@ -591,16 +591,77 @@ audio {
   -webkit-animation-name: pulse;
   animation-name: pulse;
   animation-iteration-count: infinite;
-}
-
-.animated {
   -webkit-animation-duration: 1s;
   animation-duration: 1s;
   -webkit-animation-fill-mode: both;
   animation-fill-mode: both;
 }
-@media(max-width:1024px) {
-  .navbar {
-    padding: 10px;
+@media(max-width:1237px) {
+  .start-button{
+    width:55%;
+  }
+}
+@media(max-width:970px) {
+  .start-button{
+    width:70%;
+  }
+}
+@media(max-width:888px) {
+  .start-button{
+    width:80%;
+  }
+}
+@media(max-width:779px) {
+  .start-button{
+    width:90%;
+  }
+}
+@media(max-width:694px) {
+  .start-button{
+    grid-template-columns:1fr;
+  }
+  .custom{
+    margin-bottom:40px;
+  }
+}
+@media(max-width:597px) {
+  .exercise-info{
+    width:100%;
+  }
+  .exercise-gif img{
+    width:100%;
+    height:auto;
+  }
+}
+@media(max-width:400px) {
+  .logo img{
+    width:300px;
+  }
+  .navbar h1{
+    font-size: 1.5em;
+    text-align: center;
+  }
+}
+@media(max-width:355px) {
+  .start-button{
+    width:100%;
+  }
+  .icon{
+    width:60px;
+  }
+}
+@media(max-width:330px) {
+  .logo img{
+    width:260px;
+  }
+  .copyright-link{
+    display:block;
+  }
+  .copyright-link .join-us{
+    text-align: center;
+    margin-top:10px;
+  }
+  .navbar h1{
+    font-size:1.2em;
   }
 }
