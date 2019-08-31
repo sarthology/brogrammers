@@ -1,9 +1,13 @@
 import React, { Component } from 'react';
 import NavBar from '../components/navbar';
-import 'react-input-range/lib/css/index.css';
-import InputRange from 'react-input-range';
+// import InputRange from 'react-input-range';
 import exercises from '../api/exercises-list';
+import 'react-input-range/lib/css/index.css';
 import './index.css';
+
+if (typeof window !== 'undefined') {
+  const InputRange = require('react-input-range');
+}
 
 class CustomPage extends Component {
   exercises = [
@@ -30,7 +34,11 @@ class CustomPage extends Component {
 
   constructor(props) {
     super(props);
-    const customData = JSON.parse(localStorage.getItem('customData'));
+    const customData =
+      typeof window !== 'undefined'
+        ? JSON.parse(localStorage.getItem('customData'))
+        : {};
+
     this.state = {
       frequency: customData && customData.frequency ? customData.frequency : 2,
       work: customData && customData.work ? customData.work : 3,
@@ -47,9 +55,13 @@ class CustomPage extends Component {
     //   const index = this.exercises.findIndex((exercise) => exercise === selectEx);
     //   document.getElementById(`${index}${exercise}`).className = "choice selected-exercise";
     // });
-    const customData = JSON.parse(localStorage.getItem('customData'));
-    if (customData) {
-      document.getElementById(customData.level).checked = true;
+    if (typeof window !== 'undefined') {
+      const customData = JSON.parse(localStorage.getItem('customData'));
+      if (customData) {
+        if (typeof window !== 'undefined') {
+          document.getElementById(customData.level).checked = true;
+        }
+      }
     }
   }
 
@@ -60,8 +72,11 @@ class CustomPage extends Component {
       this.setState({
         selectedExercises: exercises
       });
-      document.getElementById(`${index}${exercise}`).className =
-        'choice selected-exercise';
+
+      if (typeof window !== 'undefined') {
+        document.getElementById(`${index}${exercise}`).className =
+          'choice selected-exercise';
+      }
     } else {
       let exercises = this.state.selectedExercises;
       // exercises.push(exercise);
@@ -69,7 +84,10 @@ class CustomPage extends Component {
       this.setState({
         selectedExercises: exercises
       });
-      document.getElementById(`${index}${exercise}`).className = 'choice';
+
+      if (typeof window !== 'undefined') {
+        document.getElementById(`${index}${exercise}`).className = 'choice';
+      }
     }
   };
 
@@ -77,32 +95,42 @@ class CustomPage extends Component {
     this.setState({
       level: level
     });
-    if (level === 'easy') {
-      document.getElementById('medium').checked = false;
-      document.getElementById('hard').checked = false;
-    } else if (level === 'medium') {
-      document.getElementById('easy').checked = false;
-      document.getElementById('hard').checked = false;
-    } else {
-      document.getElementById('easy').checked = false;
-      document.getElementById('medium').checked = false;
+
+    if (typeof window !== 'undefined') {
+      if (level === 'easy') {
+        document.getElementById('medium').checked = false;
+        document.getElementById('hard').checked = false;
+      } else if (level === 'medium') {
+        document.getElementById('easy').checked = false;
+        document.getElementById('hard').checked = false;
+      } else {
+        document.getElementById('easy').checked = false;
+        document.getElementById('medium').checked = false;
+      }
     }
   };
 
   saveCustomData = () => {
-    const { frequency, work, level } = this.state;
-    if (this.state.selectedExercises.length > 0 && frequency && work && level) {
-      localStorage.setItem(
-        'customData',
-        JSON.stringify({
-          frequency,
-          work,
-          level,
-          selectedExercises: this.state.selectedExercises,
-          startExercise: 1
-        })
-      );
-      window.location = '/home?customData=true';
+    if (typeof window !== 'undefined') {
+      const { frequency, work, level } = this.state;
+      if (
+        this.state.selectedExercises.length > 0 &&
+        frequency &&
+        work &&
+        level
+      ) {
+        localStorage.setItem(
+          'customData',
+          JSON.stringify({
+            frequency,
+            work,
+            level,
+            selectedExercises: this.state.selectedExercises,
+            startExercise: 1
+          })
+        );
+        window.location = '/home?customData=true';
+      }
     }
   };
 
@@ -128,24 +156,28 @@ class CustomPage extends Component {
               })}
             </ul>
           </div>
-          <div className="f-section">
-            <label htmlFor="">Frequency: </label>
-            <InputRange
-              maxValue={this.state.work}
-              minValue={0}
-              value={this.state.frequency}
-              onChange={value => this.setState({ frequency: value })}
-            />
-          </div>
-          <div className="f-section">
-            <label htmlFor="">How long you gonna work:</label>
-            <InputRange
-              maxValue={12}
-              minValue={2}
-              value={this.state.work}
-              onChange={value => this.setState({ work: value })}
-            />
-          </div>
+          {typeof window !== 'undefined' && (
+            <div>
+              <div className="f-section">
+                <label htmlFor="">Frequency: </label>
+                <InputRange
+                  maxValue={this.state.work}
+                  minValue={0}
+                  value={this.state.frequency}
+                  onChange={value => this.setState({ frequency: value })}
+                />
+              </div>
+              <div className="f-section">
+                <label htmlFor="">How long you gonna work:</label>
+                <InputRange
+                  maxValue={12}
+                  minValue={2}
+                  value={this.state.work}
+                  onChange={value => this.setState({ work: value })}
+                />
+              </div>
+            </div>
+          )}
           <div className="f-section">
             <label htmlFor="">Level of exercise:</label>
             <div className="level">

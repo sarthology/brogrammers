@@ -10,7 +10,10 @@ import './index.css';
 import alertAudioFile from '../assets/alert.wav';
 
 const ExercisePage = () => {
-  const query = queryString.parse(document.location.search);
+  const query =
+    typeof window !== 'undefined'
+      ? queryString.parse(document.location.search)
+      : '';
 
   const audioFile =
     typeof window !== 'undefined' ? new Audio(alertAudioFile) : null;
@@ -61,8 +64,12 @@ const ExercisePage = () => {
 
   useLayoutEffect(() => {
     let t;
+    const visibility =
+      typeof window !== 'undefined'
+        ? document.visibilityState === 'hidden'
+        : false;
 
-    if (document.visibilityState === 'hidden' && !isActive && alarm !== null) {
+    if (visibility && !isActive && alarm !== null) {
       t = setInterval(() => {
         alarm.play();
       }, 3000);
