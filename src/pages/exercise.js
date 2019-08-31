@@ -169,7 +169,7 @@ const ExercisePage = () => {
         )}
         <div className="action">
           <div className="start-exercise" onClick={handleStartExercise}>
-            {start ? 'Stop Exercise Now !!' : 'Start Exercise Now !!'}
+            {start ? 'Stop Exercise Now!!' : 'Start Exercise Now!!'}
           </div>
         </div>
       </div>
