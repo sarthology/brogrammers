@@ -21,7 +21,7 @@ const IndexPage = () => (
           navigate('/home');
         }}
       >
-        Take Custom Challenge
+        Take Random Challenge
       </div>
       <div
         className="create"
