@@ -46,7 +46,7 @@ const IndexPage = () => (
     <div className="copyright-link">
       <p>
         Made with <span>❤</span> by{' '}
-        <a href="" target="_blank" class="team-xenox-link">
+        <a href="" target="_blank" className="team-xenox-link">
           Team XenoX
           <img src={fire} alt="" />
         </a>
