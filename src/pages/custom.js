@@ -1,13 +1,13 @@
 import React, { Component } from 'react';
 import NavBar from '../components/navbar';
-// import InputRange from 'react-input-range';
+import InputRange from 'react-input-range';
 import exercises from '../api/exercises-list';
 import 'react-input-range/lib/css/index.css';
 import './index.css';
 
-if (typeof window !== 'undefined') {
-  const InputRange = require('react-input-range');
-}
+// if (typeof window !== 'undefined') {
+//   const InputRange = require('react-input-range');
+// }
 
 class CustomPage extends Component {
   exercises = [
