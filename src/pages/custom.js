@@ -109,31 +109,23 @@ class CustomPage extends Component {
         <div className="big-form">
           <div className="f-section">
             <label htmlFor="">Select Exercises: </label>
-            <div className="choices">
+            <ul className="choices">
               {exercises.map((exercise, index) => {
                 return (
-                  <div
+                  <li
                     key={index}
                     id={`${index}${exercise}`}
                     className="choice"
                     onClick={() => this.selectExercise(exercise, index)}
                   >
                     {exercise}
-                  </div>
+                  </li>
                 );
               })}
-            </div>
+            </ul>
           </div>
           <div className="f-section">
             <label htmlFor="">Frequency: </label>
-            {/* <input
-              type="range"
-              className="slider"
-              min="1"
-              max="100"
-              value="10"
-              step="1"
-            /> */}
             <InputRange
               maxValue={this.state.work}
               minValue={0}
@@ -143,14 +135,6 @@ class CustomPage extends Component {
           </div>
           <div className="f-section">
             <label htmlFor="">How long you gonna work:</label>
-            {/* <input
-              type="range"
-              className="slider"
-              min="1"
-              max="8"
-              value="2"
-              step="1"
-            /> */}
             <InputRange
               maxValue={12}
               minValue={2}
@@ -170,7 +154,7 @@ class CustomPage extends Component {
                 />
                 <label htmlFor="easy">Easy</label>
               </div>
-              <div className="checkbox">
+              <div className="checkbox checkbox-2">
                 <input
                   type="checkbox"
                   id="medium"
@@ -186,7 +170,7 @@ class CustomPage extends Component {
                   value="hard"
                   onClick={() => this.selectLevel('hard')}
                 />
-                <label htmlFor="hard">Hard</label>
+                <label htmlFor="hard" className="hard-label">Hard</label>
               </div>
             </div>
           </div>
