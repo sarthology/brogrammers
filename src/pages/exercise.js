@@ -144,7 +144,7 @@ const ExercisePage = () => {
       <div className="exercise-area" id="exercise">
         <div className="exercise-message">
           <h3>Go kill it, you beast</h3>
-          {exerciseName && <p class="exercise-name">{exerciseName}</p>}
+          {exerciseName && <p className="exercise-name">{exerciseName}</p>}
         </div>
         {randomExercise && (
           <Exercise
