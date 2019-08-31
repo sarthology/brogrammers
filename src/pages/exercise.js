@@ -55,17 +55,15 @@ const ExercisePage = () => {
   };
 
   useLayoutEffect(() => {
-    setInterval(() => {
-      if (
-        document.visibilityState === 'hidden' &&
-        !isActive &&
-        alarm !== null
-      ) {
-        alarm.play();
-      }
-    }, 3000);
+    let t;
 
-    // return () => clearInterval(t);
+    if (document.visibilityState === 'hidden' && !isActive && alarm !== null) {
+      t = setInterval(() => {
+        alarm.play();
+      }, 3000);
+    }
+
+    return () => clearInterval(t);
   }, [alarm, isActive]);
 
   useEffect(() => {
