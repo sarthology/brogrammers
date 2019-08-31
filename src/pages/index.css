@@ -578,7 +578,7 @@ audio {
 .copyright-link .join-us {
   margin-left: 10px;
   color: #e56166;
-  font-size: 20px;
+  font-size: 18px;
   display: grid;
   align-content: center;
 }
@@ -628,6 +628,27 @@ audio {
   animation-duration: 1s;
   -webkit-animation-fill-mode: both;
   animation-fill-mode: both;
+}
+.skip-timer{
+  display:grid;
+  grid-template-columns:1fr 1fr;
+  width:40%;
+  margin-left:auto;
+  margin-right:auto;
+}
+.skip-button h1{
+  text-align: center;
+  color: #173947;
+  font-family: komikax;
+  font-weight: 100;
+  cursor:pointer;
+}
+.timer{
+  margin-top:0;
+}
+.skip-button h1:hover{
+ 
+  text-decoration: underline;
 }
 @media(max-width:1237px) {
   .start-button{

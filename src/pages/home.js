@@ -26,7 +26,7 @@ const HomePage = () => {
   
     const timer = new Timer();
 
-    timer.start({ countdown: true, startValues: { seconds: customSeconds ? customSeconds : 10 } });
+    timer.start({ countdown: true, startValues: { seconds: customSeconds ? customSeconds : 100 } });
 
     timer.addEventListener('secondsUpdated', function(e) {
       setTime(timer.getTimeValues().toString());
@@ -51,8 +51,13 @@ const HomePage = () => {
         <div className="search-message">
           <h2>Finding Best Excercises for you...</h2>
         </div>
+        <div className="skip-timer">
         <div className="timer">
           <h1 id="timeClock">{time}</h1>
+        </div>
+        <div className="skip-button">
+        <h1>Skip</h1>
+        </div>
         </div>
       </div>
     </>
