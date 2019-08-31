@@ -187,7 +187,7 @@ const Exercises = {
       medium: 30,
       hard: 60
     },
-    duration: {
+    reps: {
       easy: 0,
       medium: 0,
       hard: 0
@@ -202,7 +202,7 @@ const Exercises = {
       medium: 60,
       hard: 90
     },
-    duration: {
+    reps: {
       easy: 0,
       medium: 0,
       hard: 0
