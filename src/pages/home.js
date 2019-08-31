@@ -36,14 +36,10 @@ const HomePage = () => {
 
     const timer = new Timer();
 
-<<<<<<< HEAD
-    timer.start({ countdown: true, startValues: { seconds: customSeconds ? customSeconds : 100 } });
-=======
     timer.start({
       countdown: true,
-      startValues: { seconds: customSeconds ? customSeconds : 10 }
+      startValues: { seconds: customSeconds ? customSeconds : 100 }
     });
->>>>>>> 663502e6f0376067bef3bd2bd6232d71639d10c6
 
     timer.addEventListener('secondsUpdated', function(e) {
       setTime(timer.getTimeValues().toString());
@@ -67,15 +63,14 @@ const HomePage = () => {
         </div>
         <div className="search-message">
           <h2>Finding Best Excercises for you...</h2>
-          <h2 onClick={handleSkipTimer}>Skip</h2>
         </div>
         <div className="skip-timer">
-        <div className="timer">
-          <h1 id="timeClock">{time}</h1>
-        </div>
-        <div className="skip-button">
-        <h1>Skip</h1>
-        </div>
+          <div className="timer">
+            <h1 id="timeClock">{time}</h1>
+          </div>
+          <div className="skip-button" onClick={handleSkipTimer}>
+            <h1>Skip</h1>
+          </div>
         </div>
       </div>
     </>
