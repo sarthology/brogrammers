@@ -96,7 +96,7 @@ class CustomPage extends Component {
         work,
         level,
         selectedExercises: this.state.selectedExercises,
-        startExercise: 0
+        startExercise: 1
       }));
       window.location = '/home?customData=true';
     }

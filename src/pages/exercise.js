@@ -10,6 +10,8 @@ import './index.css';
 import alertAudioFile from '../assets/alert.wav';
 
 const ExercisePage = () => {
+  const query = queryString.parse(document.location.search);
+
   const audioFile =
     typeof window !== 'undefined' ? new Audio(alertAudioFile) : null;
 
@@ -41,7 +43,10 @@ const ExercisePage = () => {
     if (randomExercise && randomExercise.reps && start) {
       setTime(null);
       localStorage.removeItem('random');
-      window.location = '/success';
+      if (query && query.customData) {
+        return window.location = '/success?customData=true';
+      }
+      window.location = "/success";
     }
   };
 
@@ -90,7 +95,6 @@ const ExercisePage = () => {
       return random;
     };
 
-    const query = queryString.parse(document.location.search);
     const selectedExercises = getLocalData('selectedExercises');
 
     if (query && query.customData && selectedExercises.length) {
@@ -128,6 +132,9 @@ const ExercisePage = () => {
         setTimeout(() => {
           setTime(null);
           localStorage.removeItem('random');
+          if (query && query.customData) {
+            return window.location = '/success?customData=true';
+          }
           window.location = '/success';
         }, 3000);
       });
