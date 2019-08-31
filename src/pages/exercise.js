@@ -98,11 +98,17 @@ const ExercisePage = () => {
       }
 
       setRandomNumber(getRandom(selectedExercises.length));
-      setRandomExercise(ExercisesData[selectedExercises[randomNumber]]);
+      setRandomExercise({
+        ...ExercisesData[selectedExercises[randomNumber]],
+        name: selectedExercises[randomNumber]
+      });
       setDifficulty(getLocalData('level'));
     } else {
       setRandomNumber(getRandom(ExercisesList.length));
-      setRandomExercise(ExercisesData[ExercisesList[randomNumber]]);
+      setRandomExercise({
+        ...ExercisesData[ExercisesList[randomNumber]],
+        name: ExercisesList[randomNumber]
+      });
       setDifficulty('easy');
     }
 
@@ -140,6 +146,9 @@ const ExercisePage = () => {
       <div className="exercise-area" id="exercise">
         <div className="exercise-message">
           <h3>Go kill it, you beast</h3>
+          {randomExercise && randomExercise.name && (
+            <h1>{randomExercise.name}</h1>
+          )}
         </div>
         {randomExercise && (
           <Exercise
