@@ -38,7 +38,7 @@ const HomePage = () => {
 
     timer.start({
       countdown: true,
-      startValues: { seconds: customSeconds ? customSeconds : 100 }
+      startValues: { seconds: customSeconds ? customSeconds : 10 }
     });
 
     timer.addEventListener('secondsUpdated', function(e) {
