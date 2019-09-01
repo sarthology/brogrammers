@@ -52,22 +52,26 @@ const IndexPage = () => {
           <img src={product} alt="" />
           <div className="button-pro">
             <p>"Hey, We're on ProductHunt!"</p>
-            <div className="product-link">Find us here</div>
+            <div className="product-link">
+              <a href="https://www.producthunt.com/posts/brogrammer">
+                Find us here
+              </a>
+            </div>
           </div>
         </div>
       )}
       <div className="copyright-link">
         <p>
           Made with <span>❤</span> by{' '}
-          <a
-            href="https://teamxenox.com/"
-            className="team-xenox-link"
-          >
+          <a href="https://teamxenox.com/" className="team-xenox-link">
             Team XenoX
             <img src={fire} alt="" />
           </a>
         </p>
-        <a href="https://github.com/sarthology/XenoXMutliverse/tree/master" className="join-us">
+        <a
+          href="https://github.com/sarthology/XenoXMutliverse/tree/master"
+          className="join-us"
+        >
           Join us
         </a>
       </div>

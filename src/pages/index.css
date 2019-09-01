@@ -524,6 +524,18 @@ audio {
   padding: 4px 0px;
 }
 
+.product-link a {
+  color: #e56166;
+  font-family: 'komikax';
+  font-size: 10px;
+  text-align: center;
+  margin: 10px auto;
+  cursor: pointer;
+  width: 40%;
+  padding: 4px 0px;
+  text-decoration: none;
+}
+
 .button-pro p {
   font-size: 10px;
   color: #173947;
@@ -577,7 +589,7 @@ audio {
 .copyright-link img {
   width: 20px;
   height: 20px;
-  margin-bottom:-2px;
+  margin-bottom: -2px;
 }
 
 .copyright-link .join-us {
@@ -634,30 +646,29 @@ audio {
   -webkit-animation-fill-mode: both;
   animation-fill-mode: both;
 }
-.skip-timer{
-  display:grid;
-  grid-template-columns:1fr 1fr;
-  width:40%;
-  margin-left:auto;
-  margin-right:auto;
+.skip-timer {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  width: 40%;
+  margin-left: auto;
+  margin-right: auto;
 }
-.skip-button h1{
+.skip-button h1 {
   text-align: center;
   color: #173947;
   font-family: komikax;
   font-weight: 100;
-  cursor:pointer;
+  cursor: pointer;
 }
-.timer{
-  margin-top:0;
+.timer {
+  margin-top: 0;
 }
-.skip-button h1:hover{
- 
+.skip-button h1:hover {
   text-decoration: underline;
 }
-@media(max-width:1237px) {
-  .start-button{
-    width:55%;
+@media (max-width: 1237px) {
+  .start-button {
+    width: 55%;
   }
 }
 @media (max-width: 970px) {
@@ -679,9 +690,9 @@ audio {
   .start-button {
     grid-template-columns: 1fr;
   }
-  .skip-timer{
-    display:grid;
-    grid-template-columns:1fr;
+  .skip-timer {
+    display: grid;
+    grid-template-columns: 1fr;
   }
   .custom {
     margin-bottom: 40px;
