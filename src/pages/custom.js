@@ -11,28 +11,6 @@ import './index.css';
 // }
 
 class CustomPage extends Component {
-  exercises = [
-    'Jumping Jacks',
-    'Lunges',
-    'Planks',
-    'Squats',
-    'Burpees',
-    'Glute Bridges',
-    'Spinal Balance',
-    'Bicycle Crunches',
-    'Side Lunges',
-    'Jump Squats',
-    'Situps',
-    'Mountain Climbers',
-    'Butt Kicks',
-    'Superman Raises',
-    'Tricep Dips',
-    'Flutter Kicks',
-    'Calf Raises',
-    'Jump Lunges',
-    'Pullups'
-  ];
-
   constructor(props) {
     super(props);
     const customData =
@@ -52,7 +30,7 @@ class CustomPage extends Component {
   }
   componentDidMount() {
     this.state.selectedExercises.forEach((selectEx) => {
-      const index = this.exercises.findIndex((exercise) => exercise === selectEx);
+      const index = exercises.findIndex((exercise) => exercise === selectEx);
       document.getElementById(`${index}${selectEx}`).className = "choice selected-exercise";
     });
     if (typeof window !== 'undefined') {
@@ -143,7 +121,7 @@ class CustomPage extends Component {
           <div className="f-section">
             <label htmlFor="">Select Exercises: </label>
             <ul className="choices">
-              {this.exercises.map((exercise, index) => {
+              {exercises.map((exercise, index) => {
                 return (
                   <li
                     key={index}
