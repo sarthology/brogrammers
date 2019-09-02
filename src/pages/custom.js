@@ -51,11 +51,10 @@ class CustomPage extends Component {
     };
   }
   componentDidMount() {
-    // console.log("fsdfsdfdsfds",this.state.selectedExercises);
-    // this.state.selectedExercises((selectEx) => {
-    //   const index = this.exercises.findIndex((exercise) => exercise === selectEx);
-    //   document.getElementById(`${index}${exercise}`).className = "choice selected-exercise";
-    // });
+    this.state.selectedExercises.forEach((selectEx) => {
+      const index = this.exercises.findIndex((exercise) => exercise === selectEx);
+      document.getElementById(`${index}${selectEx}`).className = "choice selected-exercise";
+    });
     if (typeof window !== 'undefined') {
       const customData = JSON.parse(localStorage.getItem('customData'));
       if (customData) {
@@ -67,6 +66,7 @@ class CustomPage extends Component {
   }
 
   selectExercise = (exercise, index) => {
+    // console.log( `${index}${exercise}`);
     if (this.state.selectedExercises.indexOf(exercise) === -1) {
       let exercises = this.state.selectedExercises;
       exercises.push(exercise);
@@ -143,7 +143,7 @@ class CustomPage extends Component {
           <div className="f-section">
             <label htmlFor="">Select Exercises: </label>
             <ul className="choices">
-              {exercises.map((exercise, index) => {
+              {this.exercises.map((exercise, index) => {
                 return (
                   <li
                     key={index}
