@@ -137,15 +137,7 @@ class CustomPage extends Component {
           </div>
           {typeof window !== 'undefined' && (
             <div>
-              <div className="f-section">
-                <label htmlFor="">Frequency: </label>
-                <InputRange
-                  maxValue={this.state.work}
-                  minValue={0}
-                  value={this.state.frequency}
-                  onChange={value => this.setState({ frequency: value })}
-                />
-              </div>
+
               <div className="f-section">
                 <label htmlFor="">How long you gonna work:</label>
                 <InputRange
@@ -155,6 +147,17 @@ class CustomPage extends Component {
                   onChange={value => this.setState({ work: value })}
                 />
               </div>
+
+              <div className="f-section">
+                <label htmlFor="">Frequency: </label>
+                <InputRange
+                  maxValue={this.state.work}
+                  minValue={0}
+                  value={this.state.frequency}
+                  onChange={value => this.setState({ frequency: value })}
+                />
+              </div>
+              
             </div>
           )}
           <div className="f-section">
