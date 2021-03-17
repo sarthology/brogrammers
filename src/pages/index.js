@@ -38,38 +38,16 @@ const IndexPage = () => {
           Create Your Own Challenge
         </div>
       </div>
-      {popup && (
-        <div className="producthunt">
-          <div
-            className="close-it"
-            onClick={e => {
-              e.preventDefault();
-              setPopup(false);
-            }}
-          >
-            x
-          </div>
-          <img src={product} alt="" />
-          <div className="button-pro">
-            <p>"Hey, We're on ProductHunt!"</p>
-            <div className="product-link">
-              <a href="https://www.producthunt.com/posts/brogrammer">
-                Find us here
-              </a>
-            </div>
-          </div>
-        </div>
-      )}
       <div className="copyright-link">
         <p>
           Made with <span>❤</span> by{' '}
-          <a href="https://teamxenox.com/" className="team-xenox-link">
-            Team XenoX
+          <a href="https://xenox.dev/" className="team-xenox-link">
+            Xenox
             <img src={fire} alt="" />
           </a>
         </p>
         <a
-          href="https://github.com/sarthology/XenoXMutliverse/tree/master"
+          href="https://forms.clickup.com/f/1rz92-7662/S4VHGYQNFOM65DKOGG"
           className="join-us"
         >
           Join us
